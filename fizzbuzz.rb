@@ -6,4 +6,10 @@ if divisible by both, puts fizzbuzz
 else puts number
 =end
 
-def fizzbuzz; end
+def fizzbuzz
+	(1..100).each do |n|
+		puts n
+	end
+end
+
+fizzbuzz
