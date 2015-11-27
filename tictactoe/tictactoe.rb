@@ -1,38 +1,82 @@
-class Computer
-	attr_accessor :letter, :moves, :name
+class Player
+	def update_score(next_move)
+		case next_move
+		when 1
+			self.score[0] += 1
+			self.score[3] += 1
+			self.score[6] += 1
+		when 2
+			self.score[0] += 1
+			self.score[4] += 1
+		when 3
+			self.score[0] += 1
+			self.score[5] += 1
+			self.score[7] += 1
+		when 4
+			self.score[1] += 1
+			self.score[3] += 1
+		when 5
+			self.score[1] += 1
+			self.score[4] += 1
+			self.score[6] += 1
+			self.score[7] += 1
+		when 6
+			self.score[1] += 1
+			self.score[5] += 1
+		when 7
+			self.score[2] += 1
+			self.score[3] += 1
+			self.score[7] += 1
+		when 8
+			self.score[2] += 1
+			self.score[4] += 1
+		when 9
+			self.score[2] += 1
+			self.score[5] += 1
+			self.score[6] += 1
+		end
+	end
+
+end
+
+class Computer < Player
+	attr_accessor :letter, :name, :score
 
 	def initialize
 		@letter = "O"
-		@moves = []
 		@name = "Computer"
+		@score = [0, 0, 0, 0, 0, 0, 0, 0]
 	end
 
 	def prompt(available_moves)
 		next_move = available_moves.sample
-		moves << next_move
 		puts "Computer played at #{next_move}."
+		update_score(next_move)
 		return next_move
 	end
+
 end
 
-class Person
-	attr_accessor :letter, :moves, :name
+class Person < Player
+	attr_accessor :letter, :name, :score
 
 	def initialize
 		@letter = "O"
-		@moves = []
 		@name = "Player"
+		@score = [0, 0, 0, 0, 0, 0, 0, 0]
 	end
 
 	def prompt(available_moves)
 		puts "Where would you like to play your #{letter}? #{available_moves}"
 		next_move = gets.chomp.to_i
+
 		while !available_moves.include?(next_move)
 			puts "\nPlease enter a valid move. #{available_moves}"
 			next_move = gets.chomp.to_i
 		end
-		moves << next_move
+
 		puts "\nYou played at #{next_move}"
+		update_score(next_move)
 		return next_move
 	end
 
@@ -51,7 +95,7 @@ class Board
 		puts
 		board.each do |row|
 			puts " #{row[0]} | #{row[1]} | #{row[2]}"
-			puts "-----------" if row != board.last
+			puts "-----------" unless row == board.last
 		end
 		puts
 	end
@@ -66,7 +110,6 @@ class Board
 		end
 
 		available_moves.delete(move)
-
 		show
 	end
 end
@@ -110,38 +153,38 @@ class Game
 			if game_in_progress
 				board.update(first.prompt(board.available_moves), first)
 
-				game_in_progress = false if tie? || player_won?(first, "X")
+				game_in_progress = false if tie? || player_won?(first)
 			end
 
 			if game_in_progress
 				board.update(second.prompt(board.available_moves), second)
 
-				game_in_progress = false if tie? || player_won?(second, "O")
+				game_in_progress = false if tie? || player_won?(second)
 			end
 		end
 
+		restart
 	end
 
 	def tie?
-		board.available_moves.size == 0
+		if board.available_moves.size == 0
+			puts "Tie!"
+			return true
+		end
 	end
 
-	def player_won?(player, letter)
-		#horizontal
-		board.board.each do |row|
-			if row[0] == letter && row[1] == letter && row[2] == letter
-				puts "#{player.name} wins"
-				return true
-				end 
-		end
-		#vertical
-		board.board.transpose.each do |column|
-			if column[0] == letter && column[1] == letter && column[2] == letter
-				puts "#{player.name} wins"
+	def player_won?(player)
+		player.score.each do |tier|
+			if tier == 3
+				puts "#{player.name} wins!"
 				return true
 			end
 		end
 		return false
+	end
+
+	def restart
+
 	end
 
 end
