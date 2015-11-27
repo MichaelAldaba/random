@@ -1,20 +1,48 @@
 class Computer
-	attr_accessor :first
+	attr_accessor :letter, :moves
 
 	def initialize
-		@first = true
+		@letter = "O"
+		@moves = []
+	end
+
+	def prompt(available_moves)
+		next_move = available_moves.sample
+		moves << next_move
+		puts "Computer played at #{next_move}."
+		return next_move
+	end
+end
+
+class Person
+	attr_accessor :letter, :moves
+
+	def initialize
+		@letter = "O"
+		@moves = []
+	end
+
+	def prompt(available_moves)
+		puts "Where would you like to play your #{letter}? #{available_moves}"
+		next_move = gets.chomp.to_i
+		while !available_moves.include?(next_move)
+			puts "\nPlease enter a valid move. #{available_moves}"
+			next_move = gets.chomp.to_i
+		end
+		moves << next_move
+		puts "\nYou played at #{next_move}"
+		return next_move
 	end
 
 end
 
-class Person
-end
-
 class Board
-	attr_accessor :board
+	attr_accessor :board, :available_moves
 
 	def initialize
-		@board = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+		@board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+		@available_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 	end
 
 	def show
@@ -27,14 +55,18 @@ class Board
 	end
 
 	def update(move, player)
-		if move < 3
-			player.first ? (board[0][move] = "X") : (board[0][move] = "O")
-		elsif move < 6
-			player.first ? (board[1][move - 3] = "X") : (board[1][move - 3] = "O")
+		if move < 4
+			player.letter == "X" ? (board[0][move - 1] = "X") : (board[0][move - 1] = "O")
+		elsif move < 7
+			player.letter == "X" ? (board[1][move - 4] = "X") : (board[1][move - 4] = "O")
 		else
-			player.first ? (board[2][move - 6] = "X") : (board[2][move - 6] = "O")
+			player.letter == "X" ? (board[2][move - 7] = "X") : (board[2][move - 7] = "O")
 		end
-	end 
+
+		available_moves.delete(move)
+
+		show
+	end
 end
 
 class Game
@@ -44,26 +76,38 @@ class Game
 		@board = Board.new
 		@person = Person.new
 		@computer = Computer.new
+		start_game
+	end
+
+	def start_game
+		determine_turn_order
 		board.show
-		puts computer.first
-		board.update(5, computer)
-		board.show
+		take_turns
 	end
 
 	def determine_turn_order
 		while true
-			puts "Do you want to be X or O?"
-			input = gets.chomp.downcase
-			break if input == "x" || input == "o"
+			puts "\nDo you want to be X or O?"
+			input = gets.chomp.upcase
+			break if input == "X" || input == "O"
 		end
 
-		if input == "x"
+		if input == "X"
 			puts "\nYou start."
+			person.letter = "X"
 		else
 			puts "\nThe computer starts."
+			computer.letter = "X"
 		end
+	end
+
+	def take_turns
+		board.update(person.prompt(board.available_moves), person)
+		board.update(computer.prompt(board.available_moves), computer)
+		print person.moves
 
 	end
+
 
 end
 
