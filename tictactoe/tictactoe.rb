@@ -1,10 +1,12 @@
 class Game
-	attr_accessor :board, :player, :computer
+	attr_accessor :board, :player, :computer, :first, :second
 
 	def initialize (player, computer)
 		@board = []
 		@player = player
 		@computer = computer
+		@first = nil
+		@second = nil
 	end
 
 	def new_board
@@ -22,6 +24,3 @@ class Game
 
 end
 
-board = Board.new
-board.new_board
-board.show_board
