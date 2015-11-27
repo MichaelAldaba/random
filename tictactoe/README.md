@@ -1,1 +1,3 @@
-Testing README.md file for GitHub!
+Algorithm
+
+1. Welcome to Michael Aldaba's Tic-tac-toe game
