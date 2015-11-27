@@ -184,7 +184,17 @@ class Game
 	end
 
 	def restart
+		puts "\nDo you want to play again? Yes or no?"
+		input = gets.chomp.downcase
 
+		until input == "yes" || input == "no"
+			puts "\nPlay again? Yes or no?"
+			input = gets.chomp.downcase
+		end
+
+		if input == "yes"
+			game = Game.new
+		end
 	end
 
 end
