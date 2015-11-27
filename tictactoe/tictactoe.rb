@@ -1,8 +1,14 @@
-class Board
-	attr_accessor :board
+class Game
+	attr_accessor :board, :player, :computer
 
-	def initialize
-		@board = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+	def initialize (player, computer)
+		@board = []
+		@player = player
+		@computer = computer
+	end
+
+	def new_board
+		self.board = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 	end
 
 	def show_board
@@ -17,5 +23,5 @@ class Board
 end
 
 board = Board.new
-
+board.new_board
 board.show_board
