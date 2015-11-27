@@ -1,9 +1,10 @@
 class Computer
-	attr_accessor :letter, :moves
+	attr_accessor :letter, :moves, :name
 
 	def initialize
 		@letter = "O"
 		@moves = []
+		@name = "Computer"
 	end
 
 	def prompt(available_moves)
@@ -15,11 +16,12 @@ class Computer
 end
 
 class Person
-	attr_accessor :letter, :moves
+	attr_accessor :letter, :moves, :name
 
 	def initialize
 		@letter = "O"
 		@moves = []
+		@name = "Player"
 	end
 
 	def prompt(available_moves)
@@ -70,21 +72,20 @@ class Board
 end
 
 class Game
-	attr_accessor :board, :person, :computer, :first, :second
+	attr_accessor :board, :person, :computer
 
 	def initialize
 		@board = Board.new
 		@person = Person.new
 		@computer = Computer.new
-		@first
-		@second
 		start_game
 	end
 
 	def start_game
 		determine_turn_order
 		board.show
-		take_turns
+
+		person.letter == "X" ? take_turns(person, computer) : take_turns(computer, person)
 	end
 
 	def determine_turn_order
@@ -97,29 +98,25 @@ class Game
 		if input == "X"
 			puts "\nYou start."
 			person.letter = "X"
-			self.first = person
-			self.second = computer
 		else
 			puts "\nThe computer starts."
 			computer.letter = "X"
-			self.first = computer
-			self.second = person
 		end
 	end
 
-	def take_turns
+	def take_turns(first, second)
 		game_in_progress = true
 		while game_in_progress
 			if game_in_progress
 				board.update(first.prompt(board.available_moves), first)
 
-				game_in_progress = false if tie?
+				game_in_progress = false if tie? || player_won?(first, "X")
 			end
 
 			if game_in_progress
 				board.update(second.prompt(board.available_moves), second)
 
-				game_in_progress = false if tie?
+				game_in_progress = false if tie? || player_won?(second, "O")
 			end
 		end
 
@@ -127,6 +124,24 @@ class Game
 
 	def tie?
 		board.available_moves.size == 0
+	end
+
+	def player_won?(player, letter)
+		#horizontal
+		board.board.each do |row|
+			if row[0] == letter && row[1] == letter && row[2] == letter
+				puts "#{player.name} wins"
+				return true
+				end 
+		end
+		#vertical
+		board.board.transpose.each do |column|
+			if column[0] == letter && column[1] == letter && column[2] == letter
+				puts "#{player.name} wins"
+				return true
+			end
+		end
+		return false
 	end
 
 end
