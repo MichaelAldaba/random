@@ -45,6 +45,8 @@ class Game
 				game_in_progress = false if tie? || player_won?(first)
 			end
 
+			sleep(2)
+			
 			if game_in_progress
 				board.update(second.prompt(board.available_moves), second)
 
