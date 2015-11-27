@@ -70,12 +70,14 @@ class Board
 end
 
 class Game
-	attr_accessor :board, :person, :computer
+	attr_accessor :board, :person, :computer, :first, :second
 
 	def initialize
 		@board = Board.new
 		@person = Person.new
 		@computer = Computer.new
+		@first
+		@second
 		start_game
 	end
 
@@ -95,19 +97,37 @@ class Game
 		if input == "X"
 			puts "\nYou start."
 			person.letter = "X"
+			self.first = person
+			self.second = computer
 		else
 			puts "\nThe computer starts."
 			computer.letter = "X"
+			self.first = computer
+			self.second = person
 		end
 	end
 
 	def take_turns
-		board.update(person.prompt(board.available_moves), person)
-		board.update(computer.prompt(board.available_moves), computer)
-		print person.moves
+		game_in_progress = true
+		while game_in_progress
+			if game_in_progress
+				board.update(first.prompt(board.available_moves), first)
+
+				game_in_progress = false if tie?
+			end
+
+			if game_in_progress
+				board.update(second.prompt(board.available_moves), second)
+
+				game_in_progress = false if tie?
+			end
+		end
 
 	end
 
+	def tie?
+		board.available_moves.size == 0
+	end
 
 end
 
