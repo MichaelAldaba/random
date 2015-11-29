@@ -4,7 +4,7 @@ require_relative 'person.rb'
 require_relative 'player.rb'
 
 class Game
-	attr_accessor :board, :person, :computer
+	attr_accessor :board, :person, :computer, :game_in_progress
 
 	def initialize
 		@board = Board.new
@@ -37,24 +37,22 @@ class Game
 	end
 
 	def take_turns(first, second)
-		game_in_progress = true
+		@game_in_progress = true
+		
 		while game_in_progress
-			if game_in_progress
-				board.update(first.prompt(board.available_moves), first)
-
-				game_in_progress = false if tie? || player_won?(first)
-			end
-
+			player_turn(first)
 			sleep(2)
-			
-			if game_in_progress
-				board.update(second.prompt(board.available_moves), second)
-
-				game_in_progress = false if tie? || player_won?(second)
-			end
+			player_turn(second)
 		end
 
 		restart
+	end
+
+	def player_turn(player)
+		if game_in_progress
+			board.update(player.prompt(board.available_moves), player)
+			self.game_in_progress = false if tie? || player_won?(player)
+		end
 	end
 
 	def tie?
