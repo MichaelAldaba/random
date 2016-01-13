@@ -10,16 +10,12 @@ class Game
 	def show_main_menu
 		selection = nil
 		until main_menu.has_key?(selection)
-			print_main_menu
+			print_menu(main_menu)
 			selection = gets.chomp.to_i
 		end
 	end
 	
-	def print_main_menu
-		iterate_menu(main_menu)
-	end
-	
-	def iterate_menu(menu)
+	def print_menu(menu)
 		menu.each do |key, value|
 			print_sub_menu(key, value)
 		end
