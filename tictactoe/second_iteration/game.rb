@@ -1,10 +1,14 @@
-require_relative "menu"
-
 class Game
 	attr_reader :main_menu
 
 	def initialize
-		@main_menu = Menu.new.list
+		@main_menu = { 
+			1 => "Go First", 
+			2 => "Go Second",
+			3 => "Versus",
+			4 => "Computer Mode",
+			5 => "Marker Selection"
+		}
 		puts "-----------\nTic Tac Toe\n-----------"
 		show_menu(main_menu)
 	end
