@@ -4,13 +4,13 @@ class Game
 	def initialize
 		@main_menu = { 1 => "New Game", 2 => "Options"}
 		puts "-----------\nTic Tac Toe\n-----------"
-		show_main_menu
+		show_menu(main_menu)
 	end
 
-	def show_main_menu
+	def show_menu(menu)
 		selection = nil
-		until main_menu.has_key?(selection)
-			print_menu(main_menu)
+		until menu.has_key?(selection)
+			print_menu(menu)
 			selection = gets.chomp.to_i
 		end
 	end
