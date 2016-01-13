@@ -1,10 +1,10 @@
 class Game
-	attr_reader :main_menu
+  attr_reader :main_menu
 
-	def initialize
-		@main_menu = { 
-			1 => "Go First", 
-			2 => "Go Second",
+  def initialize
+	  @main_menu = { 
+		  1 => "Go First", 
+      2 => "Go Second",
 			3 => "Versus",
 			4 => "Computer Mode",
 			5 => "Marker Selection"
@@ -46,7 +46,6 @@ class Game
 		end
 	end
 		
-
 	def print_menu(menu)
 		menu.each do |key, value|
 			print_sub_menu(key, value)
