@@ -55,7 +55,7 @@ class Game
   def print_sub_menu(key, value)
   	puts "(#{key})" + " " + "#{value}"
   end
-  
+
 end
 
 Game.new
