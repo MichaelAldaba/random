@@ -1,9 +1,9 @@
 class Game
-	attr_reader :main_menu, :title
+	attr_reader :main_menu
 
 	def initialize
-		@title = "-----------\nTic Tac Toe\n-----------"
 		@main_menu = { 1 => "New Game", 2 => "Options"}
+		puts "-----------\nTic Tac Toe\n-----------"
 		show_main_menu
 	end
 
@@ -16,7 +16,6 @@ class Game
 	end
 	
 	def print_main_menu
-		puts title
 		iterate_menu(main_menu)
 	end
 	
