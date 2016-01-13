@@ -10,6 +10,14 @@ class Game
 			5 => "Marker Selection"
 		}
 		puts "-----------\nTic Tac Toe\n-----------"
+		main_menu_select
+	end
+
+	def main_menu_select
+		main_menu_switchboard(show_main_menu)
+	end
+
+	def show_main_menu
 		show_menu(main_menu)
 	end
 
@@ -20,7 +28,24 @@ class Game
 			print_menu(menu)
 			selection = gets.chomp.to_i
 		end
+		selection
 	end
+
+	def main_menu_switchboard(input)
+		case input
+		when 1
+			go_first
+		when 2
+			go_second
+		when 3
+			versus
+		when 4
+			computer_mode
+		when 5
+			marker_selection
+		end
+	end
+		
 
 	def print_menu(menu)
 		menu.each do |key, value|
