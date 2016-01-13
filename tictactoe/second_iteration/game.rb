@@ -1,5 +1,4 @@
 require_relative "sub_menu"
-require_relative "main_menu"
 
 MAIN_MENU = { 	
 	1 => SubMenu.new("Go First").name, 
@@ -24,7 +23,6 @@ class Game
 			print_menu(menu)
 			selection = gets.chomp.to_i
 		end
-		menu
 	end
 
 	def print_menu(menu)
