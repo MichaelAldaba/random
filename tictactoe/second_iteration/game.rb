@@ -1,18 +1,10 @@
-require_relative "sub_menu"
-
-MAIN_MENU = { 	
-	1 => SubMenu.new("Go First").name, 
-	2 => SubMenu.new("Go Second").name, 
-	3 => SubMenu.new("Versus").name, 
-	4 => SubMenu.new("Computer Mode").name, 
-	5 => SubMenu.new("Marker Selection").name,
-}
+require_relative "menu"
 
 class Game
 	attr_reader :main_menu
 
 	def initialize
-		@main_menu = MAIN_MENU
+		@main_menu = Menu.new.list
 		puts "-----------\nTic Tac Toe\n-----------"
 		show_menu(main_menu)
 	end
@@ -20,6 +12,7 @@ class Game
 	def show_menu(menu)
 		selection = nil
 		until menu.has_key?(selection)
+			puts "Please type your number selection."
 			print_menu(menu)
 			selection = gets.chomp.to_i
 		end
