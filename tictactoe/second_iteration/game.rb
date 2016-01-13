@@ -14,7 +14,7 @@ class Game
   end
 
   def main_menu_select
-  	main_menu_switchboard(show_main_menu)
+    main_menu_switchboard(show_main_menu)
   end
 
   def show_main_menu
@@ -22,38 +22,38 @@ class Game
   end
 
   def show_menu(menu)
-  	selection = nil
-  	until menu.has_key?(selection)
-  		puts "Please type your number selection."
-  		print_menu(menu)
-  		selection = gets.chomp.to_i
-  	end
-  	selection
+    selection = nil
+    until menu.has_key?(selection)
+      puts "Please type your number selection."
+      print_menu(menu)
+      selection = gets.chomp.to_i
+    end
+    selection
   end
 
   def main_menu_switchboard(input)
-  	case input
-  	when 1
-  		go_first
-  	when 2
-  		go_second
-  	when 3
-  		versus
-  	when 4
-  		computer_mode
-  	when 5
-  		marker_selection
-  	end
+    case input
+    when 1
+      go_first
+    when 2
+      go_second
+    when 3
+      versus
+    when 4
+      computer_mode
+    when 5
+      marker_selection
+    end
   end
 
   def print_menu(menu)
-  	menu.each do |key, value|
-  		print_sub_menu(key, value)
-  	end
+    menu.each do |key, value|
+      print_sub_menu(key, value)
+    end
   end
 
   def print_sub_menu(key, value)
-  	puts "(#{key})" + " " + "#{value}"
+    puts "(#{key})" + " " + "#{value}"
   end
 
 end
