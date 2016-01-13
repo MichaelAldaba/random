@@ -1,35 +1,35 @@
 class Game
+	attr_reader :main_menu, :title
 
 	def initialize
-		main_menu
+		@title = "-----------\nTic Tac Toe\n-----------"
+		@main_menu = { 1 => "New Game", 2 => "Options"}
+		show_main_menu
 	end
 
-	def main_menu
+	def show_main_menu
 		selection = nil
-		
-		until selection == 1 || selection == 2
-			puts "-----------"
-			puts "Tic Tac Toe"
-			puts "-----------"
-			puts "New Game (1)"
-			puts "Options  (2)"
+		until main_menu.has_key?(selection)
+			print_main_menu
 			selection = gets.chomp.to_i
 		end
-
-		main_menu_select(selection)
+	end
+	
+	def print_main_menu
+		puts title
+		iterate_menu(main_menu)
+	end
+	
+	def iterate_menu(menu)
+		menu.each do |key, value|
+			print_sub_menu(key, value)
+		end
 	end
 
-	def main_menu_select(input)
-		input == 1 ? new_game : options
+	def print_sub_menu(key, value)
+		puts "(#{key})" + " " + "#{value}"
 	end
 
-	def new_game
-		puts "NEW GAME"
-	end
-
-	def options
-		puts "OPTIONS"
-	end
 end
 
 Game.new
