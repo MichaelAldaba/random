@@ -12,26 +12,19 @@ class Game
     }
     @player1marker = "X"
     @player2marker = "O"
-    
+    print_menu_title("Tic Tac Toe")
   end
 
-  def show_menu_title(title)
-    puts "-" * title.length
+  def print_menu_title(title)
+    puts dash(title)
     puts title
-    puts "-" * title.length
+    puts dash(title)
   end
 
-  def dash
-    puts "-" * title.length
+  def dash(title)
+    "-" * title.length
   end
 
-  def title
-    puts "-----------"
-    puts "Tic Tac Toe"
-    puts "-----------"
-    
-    main_menu_select
-  end
   def main_menu_select
     main_menu_switchboard(show_main_menu)
   end
@@ -50,6 +43,16 @@ class Game
     selection
   end
 
+  def print_menu(menu)
+    menu.each do |key, value|
+      print_sub_menu(key, value)
+    end
+  end
+
+  def print_sub_menu(key, value)
+    puts "(#{key})" + " " + "#{value}"
+  end
+
   def main_menu_switchboard(input)
     case input
     when 1
@@ -63,33 +66,6 @@ class Game
     when 5
       marker_selection
     end
-  end
-
-  def marker_selection
-    puts
-    puts "----------------"
-    puts "Marker Selection"
-    puts "----------------"
-    show_markers
-  end
-
-  def show_markers
-    puts
-    puts "Player 1: #{player1marker}"
-    print "Please type your marker selection. "
-    input = gets.chomp
-
-    puts "Player 2: #{player2marker}"
-  end
-
-  def print_menu(menu)
-    menu.each do |key, value|
-      print_sub_menu(key, value)
-    end
-  end
-
-  def print_sub_menu(key, value)
-    puts "(#{key})" + " " + "#{value}"
   end
 
 end
