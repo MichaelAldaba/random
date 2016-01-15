@@ -8,16 +8,19 @@ class Game
     	2 => "Go Second",
     	3 => "Versus",
     	4 => "Computer Mode",
-    	5 => "Marker Selection"
-    }
+    	5 => "Marker Selection"}
+    
     @player1marker = "X"
     @player2marker = "O"
-    menu_select("Tic Tac Toe", main_menu_proc)
+    
+    menu_select(
+      :title => "Tic Tac Toe", 
+      :proc => main_menu_proc)
   end
 
-  def menu_select(title, proc)
-    print_menu_title(title)
-    proc.call
+  def menu_select(args)
+    print_menu_title(args[:title])
+    args[:proc].call
   end
 
   def print_menu_title(title)
@@ -32,8 +35,7 @@ class Game
 
   def main_menu_proc
     Proc.new {
-      main_menu_switchboard
-    }
+      main_menu_switchboard}
   end
 
   def main_menu_switchboard
