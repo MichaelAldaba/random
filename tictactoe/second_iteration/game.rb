@@ -12,12 +12,12 @@ class Game
     }
     @player1marker = "X"
     @player2marker = "O"
-    main_menu_select
+    menu_select("Tic Tac Toe", main_menu_proc)
   end
 
-  def main_menu_select
-    print_menu_title("Tic Tac Toe")
-    main_menu_switchboard(show_main_menu)
+  def menu_select(title, proc)
+    print_menu_title(title)
+    proc.call
   end
 
   def print_menu_title(title)
@@ -30,8 +30,14 @@ class Game
     "-" * title.length
   end
 
-  def main_menu_switchboard(input)
-    case input
+  def main_menu_proc
+    Proc.new {
+      main_menu_switchboard
+    }
+  end
+
+  def main_menu_switchboard
+    case show_menu(main_menu)
     when 1
       go_first
     when 2
@@ -43,10 +49,6 @@ class Game
     when 5
       marker_selection
     end
-  end
-
-  def show_main_menu
-    show_menu(main_menu)
   end
 
   def show_menu(menu)
@@ -68,8 +70,6 @@ class Game
   def print_sub_menu(key, value)
     puts "(#{key})" + " " + "#{value}"
   end
-
-
 
 end
 
