@@ -1,5 +1,6 @@
 class Game
   attr_reader :main_menu
+  attr_accessor :player1marker, :player2marker
 
   def initialize
     @main_menu = { 
@@ -9,10 +10,18 @@ class Game
     	4 => "Computer Mode",
     	5 => "Marker Selection"
     }
-    puts "-----------\nTic Tac Toe\n-----------"
-    main_menu_select
+    @player1marker = "X"
+    @player2marker = "O"
+    title
   end
 
+  def title
+    puts "-----------"
+    puts "Tic Tac Toe"
+    puts "-----------"
+    
+    main_menu_select
+  end
   def main_menu_select
     main_menu_switchboard(show_main_menu)
   end
@@ -24,8 +33,8 @@ class Game
   def show_menu(menu)
     selection = nil
     until menu.has_key?(selection)
-      puts "Please type your number selection."
       print_menu(menu)
+      print "\nPlease type your number selection. "
       selection = gets.chomp.to_i
     end
     selection
@@ -44,6 +53,22 @@ class Game
     when 5
       marker_selection
     end
+  end
+
+  def marker_selection
+    puts
+    puts "----------------"
+    puts "Marker Selection"
+    puts "----------------"
+    show_markers
+  end
+
+  def show_markers
+    puts
+    puts "Player 1: #{player1marker}"
+    print "Please type your marker selection. "
+    input = gets.chomp
+    puts "Player 2: #{player2marker}"
   end
 
   def print_menu(menu)
