@@ -14,12 +14,12 @@ class Game
     
     menu_select(
       :title => "Tic Tac Toe", 
-      :proc => main_menu_proc)
+      :switch => main_menu_switchboard)
   end
 
   def menu_select(args)
     print_menu_title(args[:title])
-    args[:proc].call
+    args[:switch].call
   end
 
   def print_menu_title(title)
@@ -32,24 +32,20 @@ class Game
     "-" * title.length
   end
 
-  def main_menu_proc
-    Proc.new {
-      main_menu_switchboard}
-  end
-
   def main_menu_switchboard
-    case show_menu(MAIN_MENU)
-    when 1
-      go_first
-    when 2
-      go_second
-    when 3
-      versus
-    when 4
-      computer_mode
-    when 5
-      marker_selection
-    end
+    Proc.new {
+      case show_menu(MAIN_MENU)
+      when 1
+        go_first
+      when 2
+        go_second
+      when 3
+        versus
+      when 4
+        computer_mode
+      when 5
+        marker_selection
+      end}
   end
 
   def show_menu(menu)
