@@ -12,7 +12,12 @@ class Game
     }
     @player1marker = "X"
     @player2marker = "O"
+    main_menu_select
+  end
+
+  def main_menu_select
     print_menu_title("Tic Tac Toe")
+    main_menu_switchboard(show_main_menu)
   end
 
   def print_menu_title(title)
@@ -25,8 +30,19 @@ class Game
     "-" * title.length
   end
 
-  def main_menu_select
-    main_menu_switchboard(show_main_menu)
+  def main_menu_switchboard(input)
+    case input
+    when 1
+      go_first
+    when 2
+      go_second
+    when 3
+      versus
+    when 4
+      computer_mode
+    when 5
+      marker_selection
+    end
   end
 
   def show_main_menu
@@ -53,20 +69,7 @@ class Game
     puts "(#{key})" + " " + "#{value}"
   end
 
-  def main_menu_switchboard(input)
-    case input
-    when 1
-      go_first
-    when 2
-      go_second
-    when 3
-      versus
-    when 4
-      computer_mode
-    when 5
-      marker_selection
-    end
-  end
+
 
 end
 
