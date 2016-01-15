@@ -12,7 +12,17 @@ class Game
     }
     @player1marker = "X"
     @player2marker = "O"
-    title
+    
+  end
+
+  def show_menu_title(title)
+    puts "-" * title.length
+    puts title
+    puts "-" * title.length
+  end
+
+  def dash
+    puts "-" * title.length
   end
 
   def title
@@ -68,6 +78,7 @@ class Game
     puts "Player 1: #{player1marker}"
     print "Please type your marker selection. "
     input = gets.chomp
+
     puts "Player 2: #{player2marker}"
   end
 
