@@ -1,15 +1,14 @@
 class Game
-  attr_reader :main_menu
   attr_accessor :player1marker, :player2marker
 
+  MAIN_MENU = { 
+    1 => "Go First", 
+    2 => "Go Second",
+    3 => "Versus",
+    4 => "Computer Mode",
+    5 => "Marker Selection"}
+
   def initialize
-    @main_menu = { 
-    	1 => "Go First", 
-    	2 => "Go Second",
-    	3 => "Versus",
-    	4 => "Computer Mode",
-    	5 => "Marker Selection"}
-    
     @player1marker = "X"
     @player2marker = "O"
     
@@ -39,7 +38,7 @@ class Game
   end
 
   def main_menu_switchboard
-    case show_menu(main_menu)
+    case show_menu(MAIN_MENU)
     when 1
       go_first
     when 2
