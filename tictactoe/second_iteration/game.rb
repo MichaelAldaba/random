@@ -6,15 +6,21 @@ class Game
     2 => "Go Second",
     3 => "Versus",
     4 => "Computer Mode",
-    5 => "Marker Selection"}
+    5 => "Marker Selection"
+  }
 
   def initialize
     @player1marker = "X"
     @player2marker = "O"
     
+    main_menu
+  end
+
+  def main_menu
     menu_select(
       :title => "Tic Tac Toe", 
-      :switch => main_menu_switchboard)
+      :switch => main_menu_switchboard
+    )
   end
 
   def menu_select(args)
@@ -45,7 +51,8 @@ class Game
         computer_mode
       when 5
         marker_selection
-      end}
+      end
+    }
   end
 
   def show_menu(menu)
