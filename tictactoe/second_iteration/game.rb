@@ -48,12 +48,14 @@ class Game
 
   def show_menu(menu)
     selection = nil
+    
     until menu.has_key?(selection)
       print_menu(menu)
       print "\nPlease type your number selection. "
       selection = gets.chomp.to_i
       puts
     end
+    
     selection
   end
 
@@ -69,26 +71,34 @@ class Game
 
   def marker_selection
     print_menu_title("Marker Selection")
+    show_markers
+    puts
+
+    assign_markers
+  
+    show_markers
+  end
+
+  def show_markers
     puts "First Player:  (#{marker1})"
     puts "Second Player: (#{marker2})"
+  end
 
-    marker = ""
-    until marker.length > 0
-      print "\nPlease type your marker selection for [First Player] "
-      marker = gets.chomp
-    end
-    self.marker1 = marker
+  def assign_markers
+    self.marker1 = get_marker("First")
+    self.marker2 = get_marker("Second")
+  end
 
-    marker = ""
-    until marker.length > 0
-      print "\nPLease type your marker selection for [Second Player] "
-      marker = gets.chomp
+  def get_marker(player)
+    input = ""
+
+    until input.length > 0
+      print "Please type your marker selection for [#{player} Player]. "
+      input = gets.chomp
       puts
     end
-    self.marker2 = marker
-
-    puts "First Player:  (#{marker1})"
-    puts "Second Player: (#{marker2})"
+    
+    input
   end
 
 end
