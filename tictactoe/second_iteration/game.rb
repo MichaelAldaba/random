@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :player1marker, :player2marker
+  attr_accessor :marker1, :marker2
 
   MAIN_MENU = { 
     1 => "Go First", 
@@ -10,22 +10,15 @@ class Game
   }
 
   def initialize
-    @player1marker = "X"
-    @player2marker = "O"
+    @marker1 = "X"
+    @marker2 = "O"
     
     main_menu
   end
 
   def main_menu
-    menu_select(
-      :title => "Tic Tac Toe", 
-      :switch => main_menu_switchboard
-    )
-  end
-
-  def menu_select(args)
-    print_menu_title(args[:title])
-    args[:switch].call
+    print_menu_title("Tic Tac Toe")
+    main_menu_switchboard
   end
 
   def print_menu_title(title)
@@ -39,20 +32,18 @@ class Game
   end
 
   def main_menu_switchboard
-    Proc.new {
-      case show_menu(MAIN_MENU)
-      when 1
-        go_first
-      when 2
-        go_second
-      when 3
-        versus
-      when 4
-        computer_mode
-      when 5
-        marker_selection
-      end
-    }
+    case show_menu(MAIN_MENU)
+    when 1
+      go_first
+    when 2
+      go_second
+    when 3
+      versus
+    when 4
+      computer_mode
+    when 5
+      marker_selection
+    end
   end
 
   def show_menu(menu)
@@ -61,6 +52,7 @@ class Game
       print_menu(menu)
       print "\nPlease type your number selection. "
       selection = gets.chomp.to_i
+      puts
     end
     selection
   end
