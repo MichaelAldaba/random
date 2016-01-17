@@ -67,6 +67,30 @@ class Game
     puts "(#{key})" + " " + "#{value}"
   end
 
+  def marker_selection
+    print_menu_title("Marker Selection")
+    puts "First Player:  (#{marker1})"
+    puts "Second Player: (#{marker2})"
+
+    marker = ""
+    until marker.length > 0
+      print "\nPlease type your marker selection for [First Player] "
+      marker = gets.chomp
+    end
+    self.marker1 = marker
+
+    marker = ""
+    until marker.length > 0
+      print "\nPLease type your marker selection for [Second Player] "
+      marker = gets.chomp
+      puts
+    end
+    self.marker2 = marker
+
+    puts "First Player:  (#{marker1})"
+    puts "Second Player: (#{marker2})"
+  end
+
 end
 
 Game.new
