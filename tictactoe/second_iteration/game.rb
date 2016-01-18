@@ -9,6 +9,11 @@ class Game
     5 => "Marker Selection"
   }
 
+  MARKER_SELECTION = {
+    1 => "First Player",
+    2 => "Second Player"
+  }
+
   def initialize
     @marker1 = "X"
     @marker2 = "O"
@@ -55,7 +60,7 @@ class Game
       selection = gets.chomp.to_i
       puts
     end
-    
+
     selection
   end
 
@@ -72,16 +77,31 @@ class Game
   def marker_selection
     print_menu_title("Marker Selection")
     show_markers
-    puts
+    
+    marker_selection_switchboard
+    #show_markers
+    
+    #sleep(2)
 
-    assign_markers
-  
-    show_markers
+    main_menu
   end
 
   def show_markers
     puts "First Player:  (#{marker1})"
     puts "Second Player: (#{marker2})"
+    puts
+  end
+
+  def marker_selection_switchboard
+    show_menu(MARKER_SELECTION) == 1 ? assign_marker1 : assign_marker2
+  end
+
+  def assign_marker1
+    puts "ASSIGN MARKER 1"
+  end
+
+  def assign_marker2
+    puts "ASSIGN MARKER 2"
   end
 
   def assign_markers
