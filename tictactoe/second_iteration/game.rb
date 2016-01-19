@@ -23,7 +23,9 @@ class Game
   end
   
   def main_menu
-    case show_menu(MAIN_MENU, "Tic Tac Toe")
+    case show_menu(
+      :menu => MAIN_MENU,
+      :title => "Tic Tac Toe")
     when 1
       go_first
     when 2
@@ -37,17 +39,17 @@ class Game
     end
   end
 
-  def show_menu(menu, title)
+  def show_menu(args)
     selection = nil
 
     loop do
-      print_menu_title(title)
-      print_menu_list(menu)
+      print_menu_title(args[:title])
+      print_menu_list(args[:menu])
 
       selection = menu_user_input
-      break if menu.has_key?(selection)
+      break if args[:menu].has_key?(selection)
 
-      error_message(menu)
+      error_message(args[:menu])
     end
 
     selection
