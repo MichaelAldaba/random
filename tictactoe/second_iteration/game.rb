@@ -18,61 +18,11 @@ class Game
     @marker1 = "X"
     @marker2 = "O"
     
-    main_menu(MAIN_MENU)
+    main_menu
   end
-
-  def main_menu(menu)
-    print_menu_title("Tic Tac Toe")
-    print_menu(menu)
-    
-    selection = menu_select
-
-    if menu_error?(menu, selection)
-      error_message(menu)
-      main_menu(MAIN_MENU)
-    else
-      main_menu_switchboard(selection)
-    end
-  end
-
-  def print_menu_title(title)
-    puts dash(title)
-    puts title
-    puts dash(title)
-  end
-
-  def dash(title)
-    "-" * title.length
-  end
-
-  def print_menu(menu)
-    menu.each do |key, value|
-      print_sub_menu(key, value)
-    end
-  end
-
-  def print_sub_menu(key, value)
-    puts "(#{key})" + " " + "#{value}"
-  end
-
-  def menu_select
-    print "\nPlease type your number selection. "
-    selection = gets.chomp.to_i
-  end
-
-  def menu_error?(menu, selection)
-    !menu.has_key?(selection)
-  end
-
-  def error_message(menu)
-    puts
-    puts ":ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.length} :ERROR:"
-    puts
-    sleep(2)
-  end
-
-  def main_menu_switchboard(selection)
-    case selection
+  
+  def main_menu
+    case show_main_menu(MAIN_MENU)
     when 1
       go_first
     when 2
@@ -86,11 +36,53 @@ class Game
     end
   end
 
+  def show_main_menu(menu)
+    selection = nil
 
+    loop do
+      print_menu_title("Tic Tac Toe")
+      print_menu_list(menu)
 
+      selection = menu_user_input
+      break if menu.has_key?(selection)
 
+      error_message(menu)
+    end
 
+    selection
+  end
 
+  def print_menu_title(title)
+    puts dash(title)
+    puts title
+    puts dash(title)
+  end
+
+  def dash(title)
+    "-" * title.length
+  end
+
+  def print_menu_list(menu)
+    menu.each do |key, value|
+      print_sub_menu(key, value)
+    end
+  end
+
+  def print_sub_menu(key, value)
+    puts "(#{key})" + " " + "#{value}"
+  end
+
+  def menu_user_input
+    print "\nPlease type your number selection. "
+    selection = gets.chomp.to_i
+  end
+
+  def error_message(menu)
+    puts "\n:ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
+    puts
+
+    sleep(2)
+  end
 
 end
 
