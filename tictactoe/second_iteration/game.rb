@@ -1,23 +1,23 @@
 class Game
-  attr_accessor :main_menu_list, :marker_selection_list, :marker1, :marker2 
+  attr_accessor :main_menu_list, :marker_select_list, :marker1, :marker2 
 
   def initialize
+    @marker1 = "X"
+    @marker2 = "O"
+
     @main_menu_list = {
       1 => "Go First", 
       2 => "Go Second",
       3 => "Versus",
       4 => "Computer Mode",
-      5 => "Marker Selection",
+      5 => "Marker Select",
       6 => "Exit Game"
     }
 
-    @marker_selection_list = {
-      1 => "First Player",
-      2 => "Second Player"
+    @marker_select_list = {
+      1 => "First Player  (#{marker1})",
+      2 => "Second Player (#{marker2})"
     }
-
-    @marker1 = "X"
-    @marker2 = "O"
     
     main_menu
   end
@@ -35,7 +35,7 @@ class Game
     when 4
       computer_mode
     when 5
-      marker_selection
+      marker_select
     end
   end
 
@@ -89,26 +89,16 @@ class Game
     sleep(1)
   end
 
-  def marker_selection
-    show_markers
+  def marker_select
     case show_menu(
-      :menu => marker_selection_list,
-      :title => "Marker Selection")
+      :menu => marker_select_list,
+      :title => "Marker Select")
     when 1
       first_player_marker
     when 2
       second_player_marker
     end
   end
-
-  def show_markers
-    puts "First Player:  (#{marker1})"
-    puts "Second Player: (#{marker2})"
-    puts
-
-    sleep(1)
-  end
-
 
 end
 
