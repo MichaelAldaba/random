@@ -22,7 +22,7 @@ class Game
   end
   
   def main_menu
-    case show_main_menu(MAIN_MENU)
+    case show_menu(MAIN_MENU, "Tic Tac Toe")
     when 1
       go_first
     when 2
@@ -36,11 +36,11 @@ class Game
     end
   end
 
-  def show_main_menu(menu)
+  def show_menu(menu, title)
     selection = nil
 
     loop do
-      print_menu_title("Tic Tac Toe")
+      print_menu_title(title)
       print_menu_list(menu)
 
       selection = menu_user_input
