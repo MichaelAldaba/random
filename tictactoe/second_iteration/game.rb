@@ -6,7 +6,8 @@ class Game
     2 => "Go Second",
     3 => "Versus",
     4 => "Computer Mode",
-    5 => "Marker Selection"
+    5 => "Marker Selection",
+    6 => "Exit Game"
   }
 
   MARKER_SELECTION = {
