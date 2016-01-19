@@ -86,7 +86,27 @@ class Game
     puts ":ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
     puts
 
-    sleep(2)
+    sleep(1)
+  end
+
+  def marker_selection
+    show_markers
+    case show_menu(
+      :menu => MARKER_SELECTION,
+      :title => "Marker Selection")
+    when 1
+      first_player_marker
+    when 2
+      second_player_marker
+    end
+  end
+
+  def show_markers
+    puts "First Player:  (#{marker1})"
+    puts "Second Player: (#{marker2})"
+    puts
+    
+    sleep(1)
   end
 
 end
@@ -123,12 +143,6 @@ Game.new
     #sleep(2)
 
     main_menu
-  end
-
-  def show_markers
-    puts "First Player:  (#{marker1})"
-    puts "Second Player: (#{marker2})"
-    puts
   end
 
   def marker_selection_switchboard
