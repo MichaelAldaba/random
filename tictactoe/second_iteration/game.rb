@@ -78,10 +78,12 @@ class Game
   def menu_user_input
     print "\nPlease type your number selection. "
     selection = gets.chomp.to_i
+    puts
+    selection
   end
 
   def error_message(menu)
-    puts "\n:ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
+    puts ":ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
     puts
 
     sleep(2)
