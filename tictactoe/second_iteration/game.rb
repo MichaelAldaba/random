@@ -97,7 +97,7 @@ class Game
       self.marker1 = marker_user_input
       marker_select
     when 2
-      self.marker1 = marker_user_input
+      self.marker2 = marker_user_input
       marker_select
     when 3
       main_menu
@@ -138,43 +138,3 @@ class Game
 end
 
 Game.new
-
-
-
-
-
-
-
-
-
-
-
-
-
-=begin
-
-  def assign_marker1
-    puts "ASSIGN MARKER 1"
-  end
-
-  def assign_marker2
-    puts "ASSIGN MARKER 2"
-  end
-
-  def assign_markers
-    self.marker1 = get_marker("First")
-    self.marker2 = get_marker("Second")
-  end
-
-  def get_marker(player)
-    input = ""
-
-    until input.length > 0
-      print "Please type your marker selection for [#{player} Player]. "
-      input = gets.chomp
-      puts
-    end
-    
-    input
-  end
-=end
