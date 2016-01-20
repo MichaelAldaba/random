@@ -130,15 +130,15 @@ class Game
       print "Please type your MARKER selection. "
       selection = gets.chomp.strip
       puts
-      break unless selection.empty?
-      error_message_marker_empty
+      break unless (selection.empty? || selection.to_i.to_s == selection)
+      error_message_marker_digit_empty
     end
 
     selection[0]
   end
 
-  def error_message_marker_empty
-    puts ":ERROR: MARKER MUST BE A NON-WHITESPACE CHARACTER :ERROR:"
+  def error_message_marker_digit_empty
+    puts ":ERROR: MARKER MUST BE A NON-WHITESPACE, NON-DIGIT CHARACTER :ERROR:"
     puts
 
     sleep(1)
