@@ -1,5 +1,6 @@
 class Game
-  attr_accessor :main_menu_list, :marker_select_list, :marker1, :marker2 
+  attr_reader :main_menu_list
+  attr_accessor :marker_select_list, :marker1, :marker2 
 
   def initialize
     @marker1 = "X"
