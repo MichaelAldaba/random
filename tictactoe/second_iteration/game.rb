@@ -95,7 +95,7 @@ class Game
       :menu => marker_select_list,
       :title => "Marker Select")
     when 1
-      self.marker1 = marker_user_selection
+      assign_marker1
       marker_select
     when 2
       self.marker2 = marker_user_selection
@@ -113,24 +113,37 @@ class Game
     }
   end
 
+  def assign_marker1
+    loop do
+      self.marker1 = marker_user_selection
+      break unless marker1 == marker2
+      error_message_marker_match
+    end
+  end
+
   def marker_user_selection
-    selection = ""
+    selection = nil
 
     loop do
       print "Please type your MARKER selection. "
       selection = gets.chomp.strip
       puts
       break unless selection.empty?
-      error_message_marker
+      error_message_marker_empty
     end
-
-    sleep(1)
 
     selection[0]
   end
 
-  def error_message_marker
+  def error_message_marker_empty
     puts ":ERROR: MARKER MUST BE A NON-WHITESPACE CHARACTER :ERROR:"
+    puts
+
+    sleep(1)
+  end
+
+  def error_message_marker_match
+    puts ":ERROR: MARKERS CANNOT MATCH :ERROR:"
     puts
 
     sleep(1)
