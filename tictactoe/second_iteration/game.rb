@@ -52,6 +52,8 @@ class Game
       error_message(args[:menu])
     end
 
+    sleep(1)
+
     selection
   end
 
@@ -76,7 +78,7 @@ class Game
   end
 
   def menu_user_input
-    print "\nPlease type your number selection. "
+    print "\nPlease type your NUMBER selection. "
     selection = gets.chomp.to_i
     puts
     selection
@@ -94,11 +96,35 @@ class Game
       :menu => marker_select_list,
       :title => "Marker Select")
     when 1
-      first_player_marker
+      self.marker1 = marker_user_input
     when 2
       second_player_marker
     end
   end
+
+  def marker_user_input
+    input = ""
+
+    loop do
+      print "Please type your MARKER selection. "
+      input = gets.chomp.strip
+      puts
+      break unless input.empty?
+      error_message_marker
+    end
+
+    input[0]
+  end
+
+  def error_message_marker
+    puts ":ERROR: MARKER MUST BE A NON-WHITESPACE CHARACTER :ERROR:"
+    puts
+
+    sleep(1)
+  end
+
+
+
 
 end
 
@@ -116,26 +142,7 @@ Game.new
 
 
 
-
-
-
-
 =begin
-  def marker_selection
-    print_menu_title("Marker Selection")
-    show_markers
-    
-    marker_selection_switchboard
-    #show_markers
-    
-    #sleep(2)
-
-    main_menu
-  end
-
-  def marker_selection_switchboard
-    show_menu(MARKER_SELECTION) == 1 ? assign_marker1 : assign_marker2
-  end
 
   def assign_marker1
     puts "ASSIGN MARKER 1"
