@@ -14,10 +14,7 @@ class Game
       6 => "Exit Game"
     }
 
-    @marker_select_list = {
-      1 => "First Player  (#{marker1})",
-      2 => "Second Player (#{marker2})"
-    }
+    @marker_select_list
     
     main_menu
   end
@@ -92,13 +89,18 @@ class Game
   end
 
   def marker_select
+    update_marker_select_list
     case show_menu(
       :menu => marker_select_list,
       :title => "Marker Select")
     when 1
       self.marker1 = marker_user_input
+      marker_select
     when 2
-      second_player_marker
+      self.marker1 = marker_user_input
+      marker_select
+    when 3
+      main_menu
     end
   end
 
@@ -113,6 +115,8 @@ class Game
       error_message_marker
     end
 
+    sleep(1)
+
     input[0]
   end
 
@@ -123,8 +127,13 @@ class Game
     sleep(1)
   end
 
-
-
+  def update_marker_select_list
+    self.marker_select_list = {
+      1 => "First Player  (#{marker1})",
+      2 => "Second Player (#{marker2})",
+      3 => "Return to Main Menu"
+    }
+  end
 
 end
 
