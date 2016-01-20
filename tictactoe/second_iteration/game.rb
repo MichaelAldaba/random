@@ -51,7 +51,7 @@ class Game
     end
 
     sleep(1)
-
+    
     selection
   end
 
@@ -95,11 +95,9 @@ class Game
       :menu => marker_select_list,
       :title => "Marker Select")
     when 1
-      assign_marker1
-      marker_select
+      assign_marker(1)
     when 2
-      self.marker2 = marker_user_selection
-      marker_select
+      assign_marker(2)
     when 3
       main_menu
     end
@@ -113,12 +111,16 @@ class Game
     }
   end
 
-  def assign_marker1
+  def assign_marker(marker_number)
     loop do
-      self.marker1 = marker_user_selection
+      self.marker1 = marker_user_selection if marker_number == 1
+      self.marker2 = marker_user_selection if marker_number == 2
       break unless marker1 == marker2
       error_message_marker_match
     end
+
+    sleep(1)
+    marker_select
   end
 
   def marker_user_selection
