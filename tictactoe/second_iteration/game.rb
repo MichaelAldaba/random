@@ -1,8 +1,11 @@
+require_relative 'board.rb'
+
 class Game
   attr_reader :main_menu_list
-  attr_accessor :marker_select_list, :marker1, :marker2 
+  attr_accessor :board, :marker1, :marker2, :marker_select_list
 
   def initialize
+    @board = Board.new
     @marker1 = "X"
     @marker2 = "O"
 
