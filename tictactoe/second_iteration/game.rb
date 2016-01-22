@@ -10,12 +10,11 @@ class Game
     @marker2 = "O"
 
     @main_menu_list = {
-      1 => "Go First", 
-      2 => "Go Second",
-      3 => "Versus",
-      4 => "Computer Mode",
-      5 => "Marker Select",
-      6 => "Exit Game"
+      1 => "Vs. Computer", 
+      2 => "Vs. Human",
+      3 => "Computer Mode",
+      4 => "Marker Select",
+      5 => "Exit Game"
     }
 
     @marker_select_list
@@ -28,15 +27,15 @@ class Game
       :menu => main_menu_list,
       :title => "Tic Tac Toe")
     when 1
-      go_first
+      vs_computer
     when 2
-      go_second
+      vs_human
     when 3
-      versus
-    when 4
       computer_mode
-    when 5
+    when 4
       marker_select
+    when 5
+      puts "Goodbye!"
     end
   end
 
