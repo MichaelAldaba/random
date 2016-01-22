@@ -1,17 +1,16 @@
 class Board
-	attr_accessor :board
+	attr_accessor :list
 
 	def initialize
-		@board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		@list = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 	end
 
 	def show
-		puts
-		puts " #{board[0]} | #{board[1]} | #{board[2]}"
+		puts " #{list[0]} | #{list[1]} | #{list[2]}"
 		puts "-----------"
-		puts " #{board[3]} | #{board[4]} | #{board[5]}"
+		puts " #{list[3]} | #{list[4]} | #{list[5]}"
 		puts "-----------"
-		puts " #{board[6]} | #{board[7]} | #{board[8]}"
+		puts " #{list[6]} | #{list[7]} | #{list[8]}"
 		puts
 	end
 

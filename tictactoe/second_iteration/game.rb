@@ -5,7 +5,7 @@ class Game
   attr_accessor :board, :marker1, :marker2, :marker_select_list
 
   def initialize
-    @board = Board.new
+    @board
     @marker1 = "X"
     @marker2 = "O"
 
@@ -131,10 +131,42 @@ class Game
       :menu => start_game_list,
       :title => "Computer Mode")
     when 1
-      start_game(computer1, computer2)
+      start_game(Human.new(marker1, Human.new(marker2))
     when 2
       main_menu
     end
+  end
+
+  def start_game(player1, player2)
+    self.board = Board.new
+
+  end
+
+  def game_over?(b)
+    horizontal_win?(b) ||
+    vertical_win?(b) ||
+    diagonal_win?(b)
+  end
+
+  def horizontal_win?(b)
+    [b.list[0], b.list[1], b.list[2]].uniq.length == 1 ||
+    [b.list[3], b.list[4], b.list[5]].uniq.length == 1 ||
+    [b.list[6], b.list[7], b.list[8]].uniq.length == 1
+  end
+
+  def vertical_win?(b)
+    [b.list[0], b.list[3], b.list[6]].uniq.length == 1 ||
+    [b.list[1], b.list[4], b.list[7]].uniq.length == 1 ||
+    [b.list[2], b.list[5], b.list[8]].uniq.length == 1
+  end
+
+  def diagnoal_win?(b)
+    [b.list[0], b.list[4], b.list[8]].uniq.length == 1 ||
+    [b.list[2], b.list[4], b.list[6]].uniq.length == 1
+  end
+
+  def tie?(b)
+    b.all? { |s| s == marker1 || s == marker2 }
   end
 
   def marker_select
