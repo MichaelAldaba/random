@@ -1,7 +1,7 @@
 require_relative 'board.rb'
 
 class Game
-  attr_reader :main_menu_list
+  attr_reader :main_menu_list, :vs_computer_list, :start_game_list
   attr_accessor :board, :marker1, :marker2, :marker_select_list
 
   def initialize
@@ -17,8 +17,19 @@ class Game
       5 => "Exit Game"
     }
 
-    @marker_select_list
+    @vs_computer_list = {
+      1 => "Go First",
+      2 => "Go Second",
+      3 => "Return to Main Menu"
+    }
+
+    @start_game_list = {
+      1 => "Start Game",
+      2 => "Return to Main Menu"
+    }
     
+    @marker_select_list
+
     main_menu
   end
   
@@ -89,6 +100,41 @@ class Game
     puts
 
     sleep(1)
+  end
+
+  def vs_computer
+    case show_menu(
+      :menu => vs_computer_list,
+      :title => "Vs. Computer")
+    when 1
+      start_game(human1, computer2)
+    when 2
+      start_game(computer1, human2)
+    when 3
+      main_menu
+    end
+  end
+
+  def vs_human
+    case show_menu(
+      :menu => start_game_list,
+      :title => "Vs. Human")
+    when 1
+      start_game(human1, human2)
+    when 2
+      main_menu
+    end
+  end
+
+  def computer_mode
+    case show_menu(
+      :menu => start_game_list,
+      :title => "Computer Mode")
+    when 1
+      start_game(computer1, computer2)
+    when 2
+      main_menu
+    end
   end
 
   def marker_select
