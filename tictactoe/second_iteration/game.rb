@@ -1,4 +1,5 @@
 require_relative 'board.rb'
+require_relative 'human.rb'
 
 class Game
   attr_reader :main_menu_list, :vs_computer_list, :start_game_list
@@ -120,7 +121,7 @@ class Game
       :menu => start_game_list,
       :title => "Vs. Human")
     when 1
-      start_game(human1, human2)
+      start_game(Human.new(marker1), Human.new(marker2))
     when 2
       main_menu
     end
@@ -131,7 +132,7 @@ class Game
       :menu => start_game_list,
       :title => "Computer Mode")
     when 1
-      start_game(Human.new(marker1, Human.new(marker2))
+      start_game(computer1, computer2)
     when 2
       main_menu
     end
@@ -139,7 +140,26 @@ class Game
 
   def start_game(player1, player2)
     self.board = Board.new
+    
+    loop do
+      board.show
+      puts "Player 1's Turn"
+      board.list[player1.turn(board)] = player1.marker
+      break if game_over?(board) || tie?(board)
+      board.show
+      puts "Player 2's Turn"
+      board.list[player2.turn(board)] = player2.marker
+      break if game_over?(board) || tie?(board)
+    end
 
+    board.show
+    if tie?(board)
+      puts "Tie!"
+    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
+      puts "Player 1 Wins!"
+    else
+      puts "Player 2 Wins!"
+    end
   end
 
   def game_over?(b)
@@ -160,13 +180,13 @@ class Game
     [b.list[2], b.list[5], b.list[8]].uniq.length == 1
   end
 
-  def diagnoal_win?(b)
+  def diagonal_win?(b)
     [b.list[0], b.list[4], b.list[8]].uniq.length == 1 ||
     [b.list[2], b.list[4], b.list[6]].uniq.length == 1
   end
 
   def tie?(b)
-    b.all? { |s| s == marker1 || s == marker2 }
+    b.list.all? { |s| s == marker1 || s == marker2 }
   end
 
   def marker_select
