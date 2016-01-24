@@ -1,5 +1,6 @@
 require_relative 'board.rb'
 require_relative 'human.rb'
+require_relative 'computer.rb'
 
 class Game
   attr_reader :main_menu_list, :vs_computer_list, :start_game_list
@@ -107,9 +108,21 @@ class Game
       :menu => vs_computer_list,
       :title => "Vs. Computer")
     when 1
-      start_game(human1, computer2)
+      start_game(
+        Human.new(
+          :marker => marker1,
+          :name => "Player"),
+        Computer.new(
+          :marker => marker2,
+          :name => "Computer"))
     when 2
-      start_game(computer1, human2)
+      start_game(
+        Computer.new(
+          :marker => marker1,
+          :name => "Computer"),
+        Human.new(
+          :marker => marker2,
+          :name => "Player"))
     when 3
       main_menu
     end
