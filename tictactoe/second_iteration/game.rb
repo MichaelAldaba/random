@@ -152,20 +152,25 @@ class Game
       break if game_over?(board) || tie?(board)
     end
 
-    board.show
-    if tie?(board)
-      puts "Tie!"
-    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
-      puts "Player 1 Wins!"
-    else
-      puts "Player 2 Wins!"
-    end
+    game_over_message(player1, player2)
   end
 
   def game_over?(b)
     horizontal_win?(b) ||
     vertical_win?(b) ||
     diagonal_win?(b)
+  end
+
+  def game_over_message(player1, player2)
+    board.show
+
+    if tie?(board)
+      puts "Player 1 & Player 2 Ties!"
+    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
+      puts "Player 1 Wins!"
+    else
+      puts "Player 2 Wins!"
+    end
   end
 
   def horizontal_win?(b)
