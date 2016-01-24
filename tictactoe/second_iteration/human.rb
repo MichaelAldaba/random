@@ -1,8 +1,9 @@
 class Human
-	attr_reader :marker
+	attr_reader :marker, :name
 
-	def initialize(marker)
-		@marker = marker
+	def initialize(args)
+		@marker = args[:marker]
+		@name = args[:name]
 	end
 
 	def turn(b)

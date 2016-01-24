@@ -121,7 +121,13 @@ class Game
       :menu => start_game_list,
       :title => "Vs. Human")
     when 1
-      start_game(Human.new(marker1), Human.new(marker2))
+      start_game(
+        Human.new(
+          :marker => marker1,
+          :name => "Player 1"),
+        Human.new(
+          :marker => marker2,
+          :name => "Player 2"))
     when 2
       main_menu
     end
@@ -142,17 +148,19 @@ class Game
     self.board = Board.new
     
     loop do
-      board.show
-      puts "Player 1's Turn"
-      board.list[player1.turn(board)] = player1.marker
+      player_turn(player1)
       break if game_over?(board) || tie?(board)
-      board.show
-      puts "Player 2's Turn"
-      board.list[player2.turn(board)] = player2.marker
+      player_turn(player2)
       break if game_over?(board) || tie?(board)
     end
 
     game_over_message(player1, player2)
+  end
+
+  def player_turn(player)
+    board.show
+    puts "#{player.name}'s Turn"
+    board.list[player.turn(board)] = player.marker
   end
 
   def game_over?(b)
