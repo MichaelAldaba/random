@@ -65,7 +65,6 @@ class Game
     end
 
     sleep(1)
-    
     selection
   end
 
@@ -217,6 +216,10 @@ class Game
     else
       puts "#{player2.name} Wins!"
     end
+    puts
+
+    sleep(2)
+    main_menu
   end
 
 
