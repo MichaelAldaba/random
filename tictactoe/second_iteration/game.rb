@@ -149,9 +149,9 @@ class Game
     
     loop do
       player_turn(player1)
-      break if game_over?(board) || tie?(board)
+      break if game_over?(board)
       player_turn(player2)
-      break if game_over?(board) || tie?(board)
+      break if game_over?(board)
     end
 
     game_over_message(player1, player2)
@@ -164,21 +164,13 @@ class Game
   end
 
   def game_over?(b)
+    win?(b) || tie?
+  end
+
+  def win?(b)
     horizontal_win?(b) ||
     vertical_win?(b) ||
     diagonal_win?(b)
-  end
-
-  def game_over_message(player1, player2)
-    board.show
-
-    if tie?(board)
-      puts "Player 1 & Player 2 Ties!"
-    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
-      puts "Player 1 Wins!"
-    else
-      puts "Player 2 Wins!"
-    end
   end
 
   def horizontal_win?(b)
@@ -198,8 +190,20 @@ class Game
     [b.list[2], b.list[4], b.list[6]].uniq.length == 1
   end
 
-  def tie?(b)
-    b.list.all? { |s| s == marker1 || s == marker2 }
+  def tie?
+    board.list.all? { |s| s == marker1 || s == marker2 }
+  end
+
+  def game_over_message(player1, player2)
+    board.show
+
+    if tie?
+      puts "Player 1 & Player 2 Ties!"
+    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
+      puts "Player 1 Wins!"
+    else
+      puts "Player 2 Wins!"
+    end
   end
 
   def marker_select
