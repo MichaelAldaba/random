@@ -144,14 +144,22 @@ class Game
     end
   end
 
+
+
+
+
+
+
+
+
   def start_game(player1, player2)
     self.board = Board.new
     
     loop do
       player_turn(player1)
-      break if game_over?(board)
+      break if game_over?
       player_turn(player2)
-      break if game_over?(board)
+      break if game_over?
     end
 
     game_over_message(player1, player2)
@@ -163,31 +171,36 @@ class Game
     board.list[player.turn(board)] = player.marker
   end
 
-  def game_over?(b)
-    win?(b) || tie?
+  def game_over?
+    win? || tie?
   end
 
-  def win?(b)
-    horizontal_win?(b) ||
-    vertical_win?(b) ||
-    diagonal_win?(b)
+  def win?
+    horizontal_win? ||
+    vertical_win?   ||
+    diagonal_win?
   end
 
-  def horizontal_win?(b)
-    [b.list[0], b.list[1], b.list[2]].uniq.length == 1 ||
-    [b.list[3], b.list[4], b.list[5]].uniq.length == 1 ||
-    [b.list[6], b.list[7], b.list[8]].uniq.length == 1
+  def horizontal_win?
+    check_win?(0, 1, 2) ||
+    check_win?(3, 4, 5) ||
+    check_win?(6, 7, 8)
   end
 
-  def vertical_win?(b)
-    [b.list[0], b.list[3], b.list[6]].uniq.length == 1 ||
-    [b.list[1], b.list[4], b.list[7]].uniq.length == 1 ||
-    [b.list[2], b.list[5], b.list[8]].uniq.length == 1
+  def check_win?(a, b, c)
+    l = board.list
+    [l[a], l[b], l[c]].uniq.length == 1
   end
 
-  def diagonal_win?(b)
-    [b.list[0], b.list[4], b.list[8]].uniq.length == 1 ||
-    [b.list[2], b.list[4], b.list[6]].uniq.length == 1
+  def vertical_win?
+    check_win?(0, 3, 6) ||
+    check_win?(1, 4, 7) ||
+    check_win?(2, 5, 8)
+  end
+
+  def diagonal_win?
+    check_win?(0, 4, 8) ||
+    check_win?(2, 4, 6)
   end
 
   def tie?
@@ -198,13 +211,21 @@ class Game
     board.show
 
     if tie?
-      puts "Player 1 & Player 2 Ties!"
+      puts "#{player1.name} & #{player2.name} Ties!"
     elsif board.list.count(player1.marker) > board.list.count(player2.marker)
-      puts "Player 1 Wins!"
+      puts "#{player1.name} Wins!"
     else
-      puts "Player 2 Wins!"
+      puts "#{player2.name} Wins!"
     end
   end
+
+
+
+
+
+
+
+
 
   def marker_select
     update_marker_select_list
