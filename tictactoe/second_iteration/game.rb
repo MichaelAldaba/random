@@ -128,42 +128,6 @@ class Game
     end
   end
 
-  def vs_human
-    case show_menu(
-      :menu => start_game_list,
-      :title => "Vs. Human")
-    when 1
-      start_game(
-        Human.new(
-          :marker => marker1,
-          :name => "Player 1"),
-        Human.new(
-          :marker => marker2,
-          :name => "Player 2"))
-    when 2
-      main_menu
-    end
-  end
-
-  def computer_mode
-    case show_menu(
-      :menu => start_game_list,
-      :title => "Computer Mode")
-    when 1
-      start_game(computer1, computer2)
-    when 2
-      main_menu
-    end
-  end
-
-
-
-
-
-
-
-
-
   def start_game(player1, player2)
     self.board = Board.new
     
@@ -179,6 +143,7 @@ class Game
 
   def player_turn(player)
     board.show
+    sleep(2)
     puts "#{player.name}'s Turn"
     board.list[player.turn(board)] = player.marker
   end
@@ -235,13 +200,39 @@ class Game
     main_menu
   end
 
+  def vs_human
+    case show_menu(
+      :menu => start_game_list,
+      :title => "Vs. Human")
+    when 1
+      start_game(
+        Human.new(
+          :marker => marker1,
+          :name => "Player 1"),
+        Human.new(
+          :marker => marker2,
+          :name => "Player 2"))
+    when 2
+      main_menu
+    end
+  end
 
-
-
-
-
-
-
+  def computer_mode
+    case show_menu(
+      :menu => start_game_list,
+      :title => "Computer Mode")
+    when 1
+      start_game(
+        Computer.new(
+          :marker => marker1,
+          :name => "Computer 1"),
+        Computer.new(
+          :marker => marker2,
+          :name => "Computer 2"))
+    when 2
+      main_menu
+    end
+  end
 
   def marker_select
     update_marker_select_list
