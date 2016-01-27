@@ -24,7 +24,11 @@ class Computer
 =end
 
   def turn(b)
-    get_best_move(b)
+    if b.list[4].class == Fixnum
+      4
+    else
+      get_best_move(b)
+    end
   end
 
   def get_best_move(b)
