@@ -144,7 +144,7 @@ class Game
 
   def player_turn(player)
     board.show
-    #sleep(2)
+    sleep(2)
     puts "#{player.name}'s Turn"
     board.list[player.turn(board)] = player.marker
   end

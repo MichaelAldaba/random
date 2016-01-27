@@ -57,7 +57,7 @@ class Computer
       elsif b.scenario_ten?
         return 2
       else 
-        if b.available_corners
+        if b.available_corners.size > 0
           return b.available_corners.sample
         else
           return b.available_sides.sample
