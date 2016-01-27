@@ -153,12 +153,13 @@ class Game
   def game_over_message(player1, player2)
     board.show
 
-    if board.tie?
-      puts "#{player1.name} & #{player2.name} Ties!"
-    elsif board.list.count(player1.marker) > board.list.count(player2.marker)
+    if board.win? && board.list.count(player1.marker) > board.list.count(player2.marker)
       puts "#{player1.name} Wins!"
-    else
+
+    elsif board.win?
       puts "#{player2.name} Wins!"
+    else
+      puts "#{player1.name} & #{player2.name} Ties!"
     end
     puts
 
