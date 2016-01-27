@@ -23,6 +23,14 @@ class Board
     available
   end
 
+  def available_corners
+    available_spots.select { |spot| spot == 0 || spot == 2 || spot == 6 || spot == 8 }
+  end
+
+  def available_sides
+    available_spots.select { |spot| spot == 1 || spot == 3 || spot == 5 || spot == 7 }
+  end
+
   def game_over?
     win? || tie?
   end

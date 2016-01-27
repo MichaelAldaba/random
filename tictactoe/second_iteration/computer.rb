@@ -7,22 +7,6 @@ class Computer
     @other_marker = args[:other_marker]
   end
 
-=begin
-  def turn(b)
-    spot = nil
-
-    loop do 
-      spot = rand(0..9)
-      break if b.list[spot].class == Fixnum
-    end
-
-    puts "#{name} chose square # #{spot + 1}."
-    puts
-
-    spot
-  end
-=end
-
   def turn(b)
     if b.list[4].class == Fixnum
       4
@@ -72,8 +56,12 @@ class Computer
         return 0
       elsif b.scenario_ten?
         return 2
-      else
-        return b.available_spots.sample
+      else 
+        if b.available_corners
+          return b.available_corners.sample
+        else
+          return b.available_sides.sample
+        end
       end
     end
   end
