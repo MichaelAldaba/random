@@ -24,21 +24,25 @@ class Computer
 =end
 
   def turn(b)
-    selection = nil
+    get_best_move(b)
+  end
+
+  def get_best_move(b)
+    best_move = nil
 
     b.available_spots.each do |spot|
       b.list[spot] = marker
 
       if b.game_over?
-        selection = spot
+        best_move = spot
         b.list[spot] = spot + 1
       else
         b.list[spot] = spot + 1
       end
     end
 
-    if selection
-      return selection
+    if best_move
+      return best_move
     else
       return b.available_spots.sample
     end
