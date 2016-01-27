@@ -64,6 +64,14 @@ class Computer
         return [6, 7].sample
       elsif b.scenario_six?
         return [0, 1].sample
+      elsif b.scenario_seven?
+        return 6
+      elsif b.scenario_eight?
+        return 8
+      elsif b.scenario_nine?
+        return 0
+      elsif b.scenario_ten?
+        return 2
       else
         return b.available_spots.sample
       end

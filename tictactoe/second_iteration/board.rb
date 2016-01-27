@@ -84,6 +84,20 @@ class Board
     scenario?([0, 1, 5, 6, 7, 8])
   end
 
+  def scenario_seven?
+    scenario?([0, 1, 2, 5, 6, 8])
+  end
 
+  def scenario_eight?
+    scenario?([0, 1, 2, 3, 6, 8])
+  end
+
+  def scenario_nine?
+    scenario?([0, 2, 5, 6, 7, 8])
+  end
+
+  def scenario_ten?
+    scenario?([0, 2, 3, 6, 7, 8])
+  end
 
 end
