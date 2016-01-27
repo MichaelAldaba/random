@@ -114,12 +114,14 @@ class Game
           :name => "Player"),
         Computer.new(
           :marker => marker2,
-          :name => "Computer"))
+          :name => "Computer",
+          :other_marker => marker1))
     when 2
       start_game(
         Computer.new(
           :marker => marker1,
-          :name => "Computer"),
+          :name => "Computer",
+          :other_marker => marker2),
         Human.new(
           :marker => marker2,
           :name => "Player"))
@@ -189,10 +191,12 @@ class Game
       start_game(
         Computer.new(
           :marker => marker1,
-          :name => "Computer 1"),
+          :name => "Computer 1",
+          :other_marker => marker2),
         Computer.new(
           :marker => marker2,
-          :name => "Computer 2"))
+          :name => "Computer 2",
+          :other_marker => marker1))
     when 2
       main_menu
     end

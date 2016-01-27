@@ -1,9 +1,10 @@
 class Computer
-	attr_reader :marker, :name
+	attr_reader :marker, :name, :other_marker
 
 	def initialize(args)
 		@marker = args[:marker]
 		@name = args[:name]
+		@other_marker = args[:other_marker]
 	end
 
 =begin
