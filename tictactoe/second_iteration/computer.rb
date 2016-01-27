@@ -6,6 +6,7 @@ class Computer
 		@name = args[:name]
 	end
 
+=begin
 	def turn(b)
 		spot = nil
 
@@ -18,6 +19,28 @@ class Computer
 		puts
 
 		spot
+	end
+=end
+
+	def turn(b)
+		selection = nil
+
+		b.available_spots.each do |spot|
+			b.list[spot] = marker
+
+			if b.game_over?
+				selection = spot
+				b.list[spot] = spot + 1
+			else
+				b.list[spot] = spot + 1
+			end
+		end
+
+		if selection
+			return selection
+		else
+			return b.available_spots.sample
+		end
 	end
 
 end
