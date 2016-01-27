@@ -14,4 +14,40 @@ class Board
 		puts
 	end
 
+	def game_over?(marker1, marker2)
+    win? || tie?(marker1, marker2)
+  end
+
+  def win?
+    horizontal_win? ||
+    vertical_win?   ||
+    diagonal_win?
+  end
+
+  def horizontal_win?
+    check_win?(0, 1, 2) ||
+    check_win?(3, 4, 5) ||
+    check_win?(6, 7, 8)
+  end
+
+  def check_win?(a, b, c)
+    l = list
+    [l[a], l[b], l[c]].uniq.length == 1
+  end
+
+  def vertical_win?
+    check_win?(0, 3, 6) ||
+    check_win?(1, 4, 7) ||
+    check_win?(2, 5, 8)
+  end
+
+  def diagonal_win?
+    check_win?(0, 4, 8) ||
+    check_win?(2, 4, 6)
+  end
+
+  def tie?(marker1, marker2)
+    list.all? { |s| s == marker1 || s == marker2 }
+  end
+
 end

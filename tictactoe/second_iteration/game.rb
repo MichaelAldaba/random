@@ -133,9 +133,9 @@ class Game
     
     loop do
       player_turn(player1)
-      break if game_over?
+      break if board.game_over?(marker1, marker2)
       player_turn(player2)
-      break if game_over?
+      break if board.game_over?(marker1, marker2)
     end
 
     game_over_message(player1, player2)
@@ -143,51 +143,15 @@ class Game
 
   def player_turn(player)
     board.show
-    sleep(3)
+    #sleep(3)
     puts "#{player.name}'s Turn"
     board.list[player.turn(board)] = player.marker
-  end
-
-  def game_over?
-    win? || tie?
-  end
-
-  def win?
-    horizontal_win? ||
-    vertical_win?   ||
-    diagonal_win?
-  end
-
-  def horizontal_win?
-    check_win?(0, 1, 2) ||
-    check_win?(3, 4, 5) ||
-    check_win?(6, 7, 8)
-  end
-
-  def check_win?(a, b, c)
-    l = board.list
-    [l[a], l[b], l[c]].uniq.length == 1
-  end
-
-  def vertical_win?
-    check_win?(0, 3, 6) ||
-    check_win?(1, 4, 7) ||
-    check_win?(2, 5, 8)
-  end
-
-  def diagonal_win?
-    check_win?(0, 4, 8) ||
-    check_win?(2, 4, 6)
-  end
-
-  def tie?
-    board.list.all? { |s| s == marker1 || s == marker2 }
   end
 
   def game_over_message(player1, player2)
     board.show
 
-    if tie?
+    if board.tie?(marker1, marker2)
       puts "#{player1.name} & #{player2.name} Ties!"
     elsif board.list.count(player1.marker) > board.list.count(player2.marker)
       puts "#{player1.name} Wins!"
