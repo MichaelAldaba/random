@@ -133,17 +133,21 @@ class Game
     
     loop do
       player_turn(player1)
-      break if board.game_over?(marker1, marker2)
+      break if game_over?
       player_turn(player2)
-      break if board.game_over?(marker1, marker2)
+      break if game_over?
     end
 
     game_over_message(player1, player2)
   end
 
+  def game_over?
+    board.game_over?(marker1, marker2)
+  end
+
   def player_turn(player)
     board.show
-    #sleep(3)
+    sleep(2)
     puts "#{player.name}'s Turn"
     board.list[player.turn(board)] = player.marker
   end
