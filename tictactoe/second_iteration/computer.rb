@@ -56,6 +56,14 @@ class Computer
     else
       if b.scenario_one_two?
         return [1, 3, 5, 7].sample
+      elsif b.scenario_three?
+        return [7, 8].sample
+      elsif b.scenario_four?
+        return [1, 2].sample
+      elsif b.scenario_five?
+        return [6, 7].sample
+      elsif b.scenario_six?
+        return [0, 1].sample
       else
         return b.available_spots.sample
       end
