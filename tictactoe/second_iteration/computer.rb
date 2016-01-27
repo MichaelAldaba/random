@@ -54,7 +54,11 @@ class Computer
     if best_move
       return best_move
     else
-      return b.available_spots.sample
+      if b.scenario_one_two?
+        return [1, 3, 5, 7].sample
+      else
+        return b.available_spots.sample
+      end
     end
   end
 

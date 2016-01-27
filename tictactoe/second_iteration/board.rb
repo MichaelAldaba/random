@@ -59,4 +59,9 @@ class Board
     list.all? { |s| s.class == String }
   end
 
+  def scenario_one_two?
+    available_spots == [0, 1, 3, 5, 7, 8] ||
+    available_spots == [1, 2, 3, 5, 6, 7]
+  end
+
 end
