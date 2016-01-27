@@ -60,24 +60,30 @@ class Board
   end
 
   def scenario_one_two?
-    available_spots == [0, 1, 3, 5, 7, 8] ||
-    available_spots == [1, 2, 3, 5, 6, 7]
+    scenario?([0, 1, 3, 5, 7, 8]) ||
+    scenario?([1, 2, 3, 5, 6, 7])
+  end
+
+  def scenario?(arr)
+    available_spots == arr
   end
 
   def scenario_three?
-    available_spots == [0, 1, 2, 3, 7, 8]
+    scenario?([0, 1, 2, 3, 7, 8])
   end
 
   def scenario_four?
-    available_spots == [1, 2, 3, 6, 7, 8]
+    scenario?([1, 2, 3, 6, 7, 8])
   end
 
   def scenario_five?
-    available_spots == [0, 1, 2, 5, 6, 7]
+    scenario?([0, 1, 2, 5, 6, 7])
   end
 
   def scenario_six?
-    available_spots == [0, 1, 5, 6, 7, 8]
+    scenario?([0, 1, 5, 6, 7, 8])
   end
+
+
 
 end
