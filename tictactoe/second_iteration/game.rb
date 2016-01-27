@@ -65,7 +65,6 @@ class Game
       error_message(args[:menu])
     end
 
-    sleep(1)
     selection
   end
 
