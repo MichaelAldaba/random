@@ -133,21 +133,17 @@ class Game
     
     loop do
       player_turn(player1)
-      break if game_over?
+      break if board.game_over?
       player_turn(player2)
-      break if game_over?
+      break if board.game_over?
     end
 
     game_over_message(player1, player2)
   end
 
-  def game_over?
-    board.game_over?(marker1, marker2)
-  end
-
   def player_turn(player)
     board.show
-    sleep(2)
+    #sleep(2)
     puts "#{player.name}'s Turn"
     board.list[player.turn(board)] = player.marker
   end
@@ -155,7 +151,7 @@ class Game
   def game_over_message(player1, player2)
     board.show
 
-    if board.tie?(marker1, marker2)
+    if board.tie?
       puts "#{player1.name} & #{player2.name} Ties!"
     elsif board.list.count(player1.marker) > board.list.count(player2.marker)
       puts "#{player1.name} Wins!"

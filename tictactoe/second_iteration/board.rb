@@ -14,8 +14,17 @@ class Board
 		puts
 	end
 
-	def game_over?(marker1, marker2)
-    win? || tie?(marker1, marker2)
+  def available_spots
+    available = []
+    list.each_index do |i|
+      available << i if list[i].class == Fixnum
+    end
+    
+    available
+  end
+
+	def game_over?
+    win? || tie?
   end
 
   def win?
@@ -46,8 +55,8 @@ class Board
     check_win?(2, 4, 6)
   end
 
-  def tie?(marker1, marker2)
-    list.all? { |s| s == marker1 || s == marker2 }
+  def tie?
+    list.all? { |s| s.class == String }
   end
 
 end
