@@ -37,7 +37,13 @@ class Computer
         best_move = spot
         b.list[spot] = spot + 1
       else
-        b.list[spot] = spot + 1
+        b.list[spot] = other_marker
+        if b.game_over?
+          best_move = spot
+          b.list[spot] = spot + 1
+        else
+          b.list[spot] = spot + 1
+        end
       end
     end
 
