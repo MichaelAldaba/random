@@ -45,13 +45,13 @@ class Computer
       if b.scenario_one_two? && b.list[4] == marker
         best_move = [1, 3, 5, 7].sample
       elsif b.scenario_three? && b.list[4] == marker
-        best_move = [7, 8].sample
+        best_move = 8
       elsif b.scenario_four? && b.list[4] == marker
-        best_move = [1, 2].sample
+        best_move = 2
       elsif b.scenario_five? && b.list[4] == marker
-        best_move = [6, 7].sample
+        best_move = 6
       elsif b.scenario_six? && b.list[4] == marker
-        best_move = 1
+        best_move = 0
       elsif b.scenario_seven? && b.list[4] == marker
         best_move = 6
       elsif b.scenario_eight? && b.list[4] == marker
