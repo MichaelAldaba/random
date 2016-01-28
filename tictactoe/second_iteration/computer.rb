@@ -51,7 +51,7 @@ class Computer
       elsif b.scenario_five? && b.list[4] == marker
         best_move = [6, 7].sample
       elsif b.scenario_six? && b.list[4] == marker
-        best_move = [0, 1].sample
+        best_move = 1
       elsif b.scenario_seven? && b.list[4] == marker
         best_move = 6
       elsif b.scenario_eight? && b.list[4] == marker
