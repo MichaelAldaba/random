@@ -44,22 +44,14 @@ class Computer
     else
       if b.scenario_one_two?
         best_move = [1, 3, 5, 7].sample
-      elsif b.scenario_three?
+      elsif b.scenario_three? || b.scenario_eight?
         best_move = 8
-      elsif b.scenario_four?
+      elsif b.scenario_four? || b.scenario_ten?
         best_move = 2
-      elsif b.scenario_five?
+      elsif b.scenario_five? || b.scenario_seven?
         best_move = 6
-      elsif b.scenario_six?
+      elsif b.scenario_six? || b.scenario_nine?
         best_move = 0
-      elsif b.scenario_seven?
-        best_move = 6
-      elsif b.scenario_eight?
-        best_move = 8
-      elsif b.scenario_nine?
-        best_move = 0
-      elsif b.scenario_ten?
-        best_move = 2
       else 
         if b.available_corners.size > 0
           best_move = b.available_corners.sample
