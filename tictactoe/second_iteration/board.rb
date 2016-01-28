@@ -1,8 +1,11 @@
 class Board
+  attr_reader :marker
   attr_accessor :list
 
-  def initialize
+  def initialize(marker)
     @list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @marker = marker
+
   end
 
   def show
@@ -73,7 +76,11 @@ class Board
   end
 
   def scenario?(arr)
-    available_spots == arr
+    available_spots == arr && center_marker?
+  end
+
+  def center_marker?
+    list[4] == marker
   end
 
   def scenario_three?

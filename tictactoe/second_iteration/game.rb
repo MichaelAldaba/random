@@ -130,7 +130,7 @@ class Game
   end
 
   def start_game(player1, player2)
-    self.board = Board.new
+    self.board = Board.new(marker2)
     
     loop do
       player_turn(player1)
