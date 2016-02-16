@@ -8,7 +8,6 @@ class Console
   MARKER_SELECT = "Marker Select".freeze
   RETURN = "Return to Main Menu".freeze
 
-
   @@player1_marker = PLAYER1_DEFAULT_MARKER
   @@player2_marker = PLAYER2_DEFAULT_MARKER
 
@@ -20,6 +19,18 @@ class Console
     5 => "Exit Game"
   }
 
+  @@vs_computer_list = {
+    1 => "Go First",
+    2 => "Go Second",
+    3 => RETURN
+  }
+
+  @@vs_human_list = {
+    1 => "Player 1 goes first",
+    2 => "Player 2 goes first",
+    3 => RETURN
+  }
+
   def self.start
     main_menu
   end
@@ -28,7 +39,7 @@ class Console
     system("clear")
     case show_menu(
       :title => TITLE,
-      :menu => @@main_menu_list)
+      :menu  => @@main_menu_list)
     when 1
       vs_computer
     when 2
@@ -100,12 +111,40 @@ class Console
     puts
   end
 
+  def self.vs_computer
+    system("clear")
+    case show_menu(
+      :title => VS_COMPUTER,
+      :menu  => @@vs_computer_list)
+    when 1
+      puts "Go FIRST"
+    when 2
+      puts "Go SECOND"
+    when 3
+      main_menu
+    end
+  end
+
+  def self.vs_human
+    system("clear")
+    case show_menu(
+      :title => VS_HUMAN,
+      :menu  => @@vs_human_list)
+    when 1
+      puts "PLAYER 1"
+    when 2
+      puts "PLAYER 2"
+    when 3
+      main_menu
+    end
+  end
+
   def self.marker_select
     system("clear")
     update_marker_select_list
     case show_menu(
       :title => MARKER_SELECT,
-      :menu => @@marker_select_list)
+      :menu  => @@marker_select_list)
     when 1
       assign_marker(1)
     when 2
