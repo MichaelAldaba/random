@@ -6,13 +6,18 @@ describe Board do
   end
 
   describe "#size" do 
-    it "size should be :size if :size is an argument" do
-      @board = Board.new(:size => 4)
-      expect(@board.size).to eq 4
+    context "when :size is given" do
+      it "size should be :size" do
+        @board = Board.new(:size => 4)
+        expect(@board.size).to eq 4
+      end
     end
 
-    it "size should be 3 if :size isn't an argument" do
-      expect(@board.size).to eq 3
+    context "when :size isn't given" do
+      it "size should be 3 if :size isn't an argument" do
+        expect(@board.size).to eq 3
+      end
     end
   end
+
 end
