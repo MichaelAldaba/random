@@ -209,4 +209,65 @@ class Console
     puts
   end
 
+  def self.show_board(board)
+    0.upto(board.size ** 2 - 1) do |n|
+      if board.state[n] == nil
+        if n < 10
+          print "  #{n}  "
+        else
+          print " #{n}  "
+        end
+      else
+        print " #{board.state[n]} "
+      end
+
+      if ((n + 1) % board.size) == 0
+        print "\n"
+        unless (n + 1) == board.size ** 2 
+          print "-" * (board.size * 6 - 1)
+          print "\n"
+        end
+      else
+        print "|"
+      end
+    end
+  end
+
 end		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
