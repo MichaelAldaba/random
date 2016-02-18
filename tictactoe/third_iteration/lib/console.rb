@@ -39,6 +39,11 @@ class Console
     3 => RETURN
   }
 
+  @@play_again_list = {
+    1 => "Yes",
+    2 => "No"
+  }
+
   def self.start
     main_menu
   end
@@ -57,10 +62,7 @@ class Console
     when 4
       marker_select
     when 5
-      system("clear")
-      puts "Goodbye!"
-      puts
-      exit
+      goodbye
     end
   end
 
@@ -117,6 +119,13 @@ class Console
     system("clear")
     puts ":ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
     puts
+  end
+
+  def self.goodbye
+    system("clear")
+    puts "Goodbye!"
+    puts
+    exit
   end
 
   def self.vs_computer
@@ -242,6 +251,18 @@ class Console
       else
         print "|"
       end
+    end
+  end
+
+  def self.play_again?
+    system("clear")
+    case show_menu(
+      :title => "Play again?",
+      :menu => @@play_again_list)
+    when 1
+      true
+    when 2
+      goodbye
     end
   end
 
