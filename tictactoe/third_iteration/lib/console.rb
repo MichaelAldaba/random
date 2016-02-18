@@ -7,6 +7,14 @@ class Console
   COMPUTER_MODE = "Computer Mode".freeze
   MARKER_SELECT = "Marker Select".freeze
   RETURN = "Return to Main Menu".freeze
+  HUMAN_TYPE = "H".freeze
+  COMPUTER_TYPE = "C".freeze
+  PLAYER = "Player".freeze
+  PLAYER1 = "Player 1".freeze
+  PLAYER2 = "Player 2".freeze
+  COMPUTER = "Computer".freeze
+  COMPUTER1 = "Computer 1".freeze
+  COMPUTER2 = "Computer 2".freeze
 
   @@player1_marker = PLAYER1_DEFAULT_MARKER
   @@player2_marker = PLAYER2_DEFAULT_MARKER
@@ -20,14 +28,14 @@ class Console
   }
 
   @@vs_computer_list = {
-    1 => "Go First",
-    2 => "Go Second",
+    1 => "#{PLAYER} goes first",
+    2 => "#{COMPUTER} goes first",
     3 => RETURN
   }
 
   @@vs_human_list = {
-    1 => "Player 1 goes first",
-    2 => "Player 2 goes first",
+    1 => "#{PLAYER1} goes first",
+    2 => "#{PLAYER2} goes first",
     3 => RETURN
   }
 
@@ -117,9 +125,11 @@ class Console
       :title => VS_COMPUTER,
       :menu  => @@vs_computer_list)
     when 1
-      puts "Go FIRST"
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@player1_marker},
+                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@player2_marker}}
     when 2
-      puts "Go SECOND"
+      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@player1_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@player2_marker}}
     when 3
       main_menu
     end
@@ -131,9 +141,11 @@ class Console
       :title => VS_HUMAN,
       :menu  => @@vs_human_list)
     when 1
-      puts "PLAYER 1"
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@player1_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@player2_marker}}
     when 2
-      puts "PLAYER 2"
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@player1_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@player2_marker}}
     when 3
       main_menu
     end
@@ -164,8 +176,8 @@ class Console
 
   def self.assign_marker(marker)
     loop do
-      @@player1_marker = marker_user_selection("Player 1") if marker == 1
-      @@player2_marker = marker_user_selection("Player 2") if marker == 2
+      @@player1_marker = marker_user_selection("First Player") if marker == 1
+      @@player2_marker = marker_user_selection("Second Player") if marker == 2
       break unless @@player1_marker == @@player2_marker
       error_message_marker_match
       print_marker_select
