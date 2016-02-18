@@ -1,6 +1,6 @@
 class Console
-  PLAYER1_DEFAULT_MARKER = "X".freeze
-  PLAYER2_DEFAULT_MARKER = "O".freeze
+  FIRST_DEFAULT_MARKER = "X".freeze
+  SECOND_DEFAULT_MARKER = "O".freeze
   TITLE = "TIC TAC TOE".freeze
   VS_COMPUTER = "Vs. Computer".freeze
   VS_HUMAN = "Vs. Human".freeze
@@ -16,8 +16,8 @@ class Console
   COMPUTER1 = "Computer 1".freeze
   COMPUTER2 = "Computer 2".freeze
 
-  @@player1_marker = PLAYER1_DEFAULT_MARKER
-  @@player2_marker = PLAYER2_DEFAULT_MARKER
+  @@first_marker = FIRST_DEFAULT_MARKER
+  @@second_marker = SECOND_DEFAULT_MARKER
 
   @@main_menu_list = {
     1 => VS_COMPUTER,
@@ -125,11 +125,11 @@ class Console
       :title => VS_COMPUTER,
       :menu  => @@vs_computer_list)
     when 1
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@player1_marker},
-                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@player2_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@first_marker},
+                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@second_marker}}
     when 2
-      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@player1_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@player2_marker}}
+      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@second_marker}}
     when 3
       main_menu
     end
@@ -141,11 +141,11 @@ class Console
       :title => VS_HUMAN,
       :menu  => @@vs_human_list)
     when 1
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@player1_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@player2_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@second_marker}}
     when 2
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@player1_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@player2_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@second_marker}}
     when 3
       main_menu
     end
@@ -168,17 +168,17 @@ class Console
 
   def self.update_marker_select_list
     @@marker_select_list = {
-      1 => "First Player  (#{@@player1_marker})",
-      2 => "Second Player (#{@@player2_marker})",
+      1 => "First Player  (#{@@first_marker})",
+      2 => "Second Player (#{@@second_marker})",
       3 => RETURN
     }
   end
 
   def self.assign_marker(marker)
     loop do
-      @@player1_marker = marker_user_selection("First Player") if marker == 1
-      @@player2_marker = marker_user_selection("Second Player") if marker == 2
-      break unless @@player1_marker == @@player2_marker
+      @@first_marker  = marker_user_selection("First Player") if marker == 1
+      @@second_marker = marker_user_selection("Second Player") if marker == 2
+      break unless @@first_marker == @@second_marker
       error_message_marker_match
       print_marker_select
     end
