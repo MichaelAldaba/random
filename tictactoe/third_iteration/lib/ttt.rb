@@ -6,3 +6,5 @@ while play_again
   players = Console.start
   play_again = Console.play_again?
 end
+
+Console.goodbye

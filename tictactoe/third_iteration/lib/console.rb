@@ -262,7 +262,7 @@ class Console
     when 1
       true
     when 2
-      goodbye
+      false
     end
   end
 
