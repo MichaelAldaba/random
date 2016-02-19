@@ -133,11 +133,11 @@ class Console
       :title => VS_COMPUTER,
       :menu  => @@vs_computer_list)
     when 1
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@first_marker},
-                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@second_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :marker => @@first_marker},
+                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@second_marker}}
     when 2
-      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :mark => @@first_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :mark => @@second_marker}}
+      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :marker => @@second_marker}}
     when 3
       main_menu
     end
@@ -149,11 +149,11 @@ class Console
       :title => VS_HUMAN,
       :menu  => @@vs_human_list)
     when 1
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@first_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@second_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER1, :marker => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER2, :marker => @@second_marker}}
     when 2
-      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER2, :mark => @@first_marker},
-                :player2 => {:type => HUMAN_TYPE, :name => PLAYER1, :mark => @@second_marker}}
+      players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER2, :marker => @@first_marker},
+                :player2 => {:type => HUMAN_TYPE, :name => PLAYER1, :marker => @@second_marker}}
     when 3
       main_menu
     end
