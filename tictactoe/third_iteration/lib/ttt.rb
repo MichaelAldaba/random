@@ -1,4 +1,4 @@
-require_relative 'console.rb'
+require_relative 'game'
 
 play_again = true
 
