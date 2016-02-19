@@ -1,7 +1,6 @@
 class Console
   FIRST_DEFAULT_MARKER = "X".freeze
   SECOND_DEFAULT_MARKER = "O".freeze
-  TITLE = "TIC TAC TOE".freeze
   VS_COMPUTER = "Vs. Computer".freeze
   VS_HUMAN = "Vs. Human".freeze
   COMPUTER_MODE = "Computer Mode".freeze
@@ -51,7 +50,7 @@ class Console
   def self.main_menu
     system("clear")
     case show_menu(
-      :title => TITLE,
+      :title => "TIC TAC TOE",
       :menu  => @@main_menu_list)
     when 1
       vs_computer
