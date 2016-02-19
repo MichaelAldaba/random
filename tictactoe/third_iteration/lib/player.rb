@@ -8,7 +8,7 @@ class Player
     players_array = []
 
     players.each_key do |player|
-      if players[player][:type] = "H"
+      if players[player][:type] == "H"
         players_array << Human.new(:name => players[player][:name], :marker => players[player][:marker])
       else
         players_array << Computer.new(:name => players[player][:name], :marker => players[player][:marker])
