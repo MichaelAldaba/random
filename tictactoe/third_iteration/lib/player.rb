@@ -4,7 +4,7 @@ class Player
   attr_accessor :name, :marker
 
   def self.generate_players(players = {})
-    players = DEFAULT_PLAYERS if players == nil
+    players = DEFAULT_PLAYERS if players == {}
     players_array = []
 
     players.each_key do |player|
