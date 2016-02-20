@@ -159,6 +159,11 @@ class Console
     end
   end
 
+  def self.computer_mode
+    players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER1, :marker => @@first_marker},
+              :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER2, :marker => @@second_marker}}
+  end
+
   def self.marker_select
     system("clear")
     update_marker_select_list
