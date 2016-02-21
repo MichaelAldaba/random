@@ -114,30 +114,17 @@ describe Game do
   end
 
   describe "#tie?" do
-    context "with a full 3 X 3 board" do
+    context "with a tie game" do
       it "should return true" do
         @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
         expect(@game.tie?).to be true
       end
     end
 
-    context "with a 3 X 3 board that is not full" do
+    context "with a non-tied game" do
       it "should return false" do
         @game.board.state = ["X", nil, "O", "X", "O", "X", "O", "X", "O"]
         expect(@game.tie?).to be false
-      end
-    end
-
-    context "with a full 4 X 4 board" do
-      it "should return true" do
-        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O"]
-        expect(@game.tie?). to be true
-      end
-    end
-
-    context "with a 4 X 4 board that is not full" do
-      it "should return false" do
-        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", nil]
       end
     end
   end

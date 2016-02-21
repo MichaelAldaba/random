@@ -42,16 +42,30 @@ describe Board do
   end
 
   describe "#full?" do
-    context "when board is full" do
+    context "when 3 X 3 board is full" do
       it "should return true" do
         @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
         expect(@board.full?).to be true
       end
     end
 
-    context "when board is not full" do
+    context "when 3 X 3 board is not full" do
       it "should return false" do
         @board.state = ["X", nil, "O", "X", "O", "X", "O", "X", "O"]
+        expect(@board.full?).to be false
+      end
+    end
+
+    context "when 4 X 4 board is full" do
+      it "should return true" do
+        @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O"]
+        expect(@board.full?).to be true
+      end
+    end
+
+    context "when 4 X 4 board is not full" do
+      it "should return false" do
+        @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", nil]
         expect(@board.full?).to be false
       end
     end
