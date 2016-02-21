@@ -24,6 +24,11 @@ class Human < Player
     @name = args[:name]
     @marker = args[:marker]
   end
+
+  def move(args = {})
+    index = Console.human_input(args[:board])
+    args[:board].update(index, marker)
+  end
 end
 
 class Computer < Player

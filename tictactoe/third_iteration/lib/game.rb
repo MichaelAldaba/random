@@ -15,7 +15,12 @@ class Game
 	end
 
 	def play
-		Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player)
+		until over?
+			Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player)
+			current_player.move(:board => board)
+			end_turn!
+		end
+		
 	end
 
 	def current_player

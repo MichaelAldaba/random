@@ -254,7 +254,7 @@ class Console
           print " #{n}  "
         end
       else
-        print " #{board.state[n]} "
+        print "  #{board.state[n]}  "
       end
 
       if ((n + 1) % board.size) == 0
@@ -268,6 +268,22 @@ class Console
       end
     end
   end
+
+  def self.human_input(board)
+    input = false
+    until input
+      print "Please type your POSITION selection for your marker: "
+      input = gets.strip.to_i
+      redo unless self.valid_input?(input, board)
+    end
+
+    input
+  end
+
+  def self.valid_input?(num, board)
+    num < board.state.size && board.state[num] == nil
+  end
+
 
   def self.play_again?
     system("clear")

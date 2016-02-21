@@ -4,8 +4,8 @@ play_again = true
 
 while play_again
   players = Console.start
-  Game.new(:players => players)
-  Game.play
+  game = Game.new(:players => players)
+  game.play
   sleep(60)
   play_again = Console.play_again?
 end
