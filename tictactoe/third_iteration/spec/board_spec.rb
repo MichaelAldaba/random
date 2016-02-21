@@ -56,4 +56,12 @@ describe Board do
       end
     end
   end
+
+  describe "#update" do
+    it "should add marker at index" do
+      @board.update(5, "X")
+      expect(@board.state).to eq([nil, nil, nil, nil, nil, "X", nil, nil, nil])
+    end
+  end
+
 end

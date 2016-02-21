@@ -15,4 +15,8 @@ class Board
   	!@state.include?(nil)
   end
 
+  def update(index, marker)
+  	@state[index] = marker
+  end
+
 end
