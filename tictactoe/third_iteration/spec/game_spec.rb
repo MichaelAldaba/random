@@ -57,4 +57,118 @@ describe Game do
       expect(@game.current_player).to be player
     end
   end
+
+  describe "#over?" do
+    context "with a winner" do
+      it "should return true" do
+        @game.board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
+        expect(@game.over?).to be true
+      end
+    end
+
+    context "with a tie" do
+      it "should return true" do
+        @game.board.state = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
+        expect(@game.over?).to be true
+      end
+    end
+
+    context "with no winner and no tie" do
+      it "should return false" do
+        @game.board.state = ["X", "O", "X", "X", "O", "O", "O", nil, "X"]
+        expect(@game.over?).to be false
+      end
+    end
+  end
+
+  describe "#win?" do
+    context "with a winner on a 3 X 3 board" do
+      it "should return true" do
+        @game.board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
+        expect(@game.win?(@game.first_player, @game.second_player)).to be true
+      end
+    end
+
+    context "with no winner on a 3 X 3 board" do
+      it "should return false" do
+        @game.board.state = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
+        expect(@game.win?(@game.first_player, @game.second_player)).to be false
+      end
+    end
+
+    context "with a winner on a 4 X 4 board" do
+      it "should return true" do
+        @game = Game.new({:size => 4})
+        @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@game.win?(@game.first_player, @game.second_player)).to be true
+      end
+    end
+
+    context "with no winner on a 4 X 4 board" do
+      it "should return false" do
+        @game = Game.new({:size => 4})
+        @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, nil]
+        expect(@game.win?(@game.first_player, @game.second_player)).to be false
+      end
+    end
+  end
+
+  describe "#tie?" do
+    context "with a full 3 X 3 board" do
+      it "should return true" do
+        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
+        expect(@game.tie?).to be true
+      end
+    end
+
+    context "with a 3 X 3 board that is not full" do
+      it "should return false" do
+        @game.board.state = ["X", nil, "O", "X", "O", "X", "O", "X", "O"]
+        expect(@game.tie?).to be false
+      end
+    end
+
+    context "with a full 4 X 4 board" do
+      it "should return true" do
+        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O"]
+        expect(@game.tie?). to be true
+      end
+    end
+
+    context "with a 4 X 4 board that is not full" do
+      it "should return false" do
+        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", nil]
+      end
+    end
+  end
+
+  describe "#winner" do
+    context "with first player as winner on a 3 X 3 board" do
+      it "should return first player's marker" do
+        @game.board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
+        expect(@game.winner(@game.first_player, @game.second_player)).to eq "X"
+      end
+    end
+
+    context "with second player as winner on a 3 X 3 board" do
+      it "should return second player's marker" do
+        @game.board.state = ["X", nil, "X", "O", "O", "O", nil, nil, "X"]
+        expect(@game.winner(@game.first_player, @game.second_player)).to eq "O"
+      end
+    end
+
+    context "with first player as winner on a 4 X 4 board" do
+      it "should return first player's marker" do
+        @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@game.winner(@game.first_player, @game.second_player)).to eq "X"
+      end
+    end
+
+    context "with second player as winner on a 4 X 4 board" do
+      it "should return second player's marker" do
+        @game.board.state = ["O", "O", "O", "O", "X", "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@game.winner(@game.first_player, @game.second_player)).to eq "O"
+      end
+    end
+  end
 end
