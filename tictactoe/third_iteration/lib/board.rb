@@ -7,4 +7,12 @@ class Board
     @state = Array.new(@size ** 2, nil)
   end
 
+  def empty?
+  	@state == Array.new(@size ** 2, nil)
+  end
+
+  def full?
+  	!@state.include?(nil)
+  end
+
 end

@@ -28,19 +28,19 @@ describe Game do
     end
   end
 
-  describe '#current_player' do
+  describe "#current_player" do
     it "should be equal to first_player" do
       expect(@game.current_player).to be @game.first_player
     end
   end
 
-  describe '#other_player' do
+  describe "#other_player" do
     it "should be equal to second_player" do
       expect(@game.other_player).to be @game.second_player
     end
   end
 
-  describe '#end_turn!' do
+  describe "#end_turn!" do
     it "should change current_player to other_player" do
       player = @game.current_player
       @game.end_turn!
