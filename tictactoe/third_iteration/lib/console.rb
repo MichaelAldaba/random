@@ -296,7 +296,7 @@ class Console
   end
 
   def self.play_again?
-    system("clear")
+    puts
     case show_menu(
       :title => "Play again?",
       :menu => @@play_again_list)
