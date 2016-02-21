@@ -18,6 +18,10 @@ describe Game do
       it "should have a second player" do
         expect(@game.second_player).to be_a Player
       end
+
+      it "should have the winning lines" do
+        expect(@game.winning_lines).to eq([[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]])
+      end
     end
 
     context "with a board size of 4" do
