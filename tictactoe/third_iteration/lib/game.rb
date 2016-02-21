@@ -12,8 +12,6 @@ class Game
 		@first_player = players.first
 		@second_player = players.last
 		@winning_lines = board.get_lines
-
-		play
 	end
 
 	def play
