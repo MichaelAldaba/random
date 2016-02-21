@@ -16,11 +16,26 @@ class Game
 
 	def play
 		until over?
-			Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player)
-			current_player.move(:board => board)
+			index = nil
+			error = false
+
+			loop do
+				if error == false
+					Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player)
+				else
+					Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :error => true)
+				end
+
+				index = current_player.move(:board => board)
+
+				break if Console.valid_input?(index, board)
+
+				error = true
+			end
+
+			board.update(index, current_player.marker)
 			end_turn!
 		end
-		
 	end
 
 	def current_player

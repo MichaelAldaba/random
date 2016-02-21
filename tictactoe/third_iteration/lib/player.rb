@@ -27,7 +27,6 @@ class Human < Player
 
   def move(args = {})
     index = Console.human_input(args[:board])
-    args[:board].update(index, marker)
   end
 end
 

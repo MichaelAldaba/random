@@ -236,6 +236,7 @@ class Console
 
   def self.display(args = {})
     system("clear")
+    puts error_message_index_select if args[:error] == true
     print_menu_title("Tic Tac Toe")
     puts "First Player:  (#{args[:first_player].marker}) #{args[:first_player].name}"
     puts "Second Player: (#{args[:second_player].marker}) #{args[:second_player].name}"
@@ -270,18 +271,16 @@ class Console
   end
 
   def self.human_input(board)
-    input = false
-    until input
-      print "Please type your POSITION selection for your marker: "
-      input = gets.strip.to_i
-      redo unless self.valid_input?(input, board)
-    end
-
-    input
+    print "Please type your POSITION selection for your marker: "
+    input = gets.strip.to_i
   end
 
   def self.valid_input?(num, board)
     num < board.state.size && board.state[num] == nil
+  end
+
+  def self.error_message_index_select
+    puts ":ERROR: POSITION MUST BE AN AVAILABLE SPACE :ERROR:"
   end
 
 
