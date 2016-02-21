@@ -12,6 +12,12 @@ class Game
 		@first_player = players.first
 		@second_player = players.last
 		@winning_lines = board.get_lines
+
+		play
+	end
+
+	def play
+		Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player)
 	end
 
 	def current_player

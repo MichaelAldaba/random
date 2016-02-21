@@ -234,6 +234,17 @@ class Console
     puts
   end
 
+  def self.display(args = {})
+    system("clear")
+    print_menu_title("Tic Tac Toe")
+    puts "First Player:  (#{args[:first_player].marker}) #{args[:first_player].name}"
+    puts "Second Player: (#{args[:second_player].marker}) #{args[:second_player].name}"
+    puts
+    show_board(args[:board])
+    puts
+    puts "Current Player: #{args[:current_player].name}"
+  end
+
   def self.show_board(board)
     0.upto(board.size ** 2 - 1) do |n|
       if board.state[n] == nil
