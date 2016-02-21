@@ -76,7 +76,7 @@ class Console
       selection = menu_user_selection
       break if args[:menu].has_key?(selection)
 
-      error_message(args[:menu])
+      error_message_menu_select(args[:menu])
     end
 
     selection
@@ -237,13 +237,17 @@ class Console
   def self.display(args = {})
     system("clear")
     puts error_message_index_select if args[:error] == true
+
     print_menu_title("Tic Tac Toe")
+
     puts "First Player:  (#{args[:first_player].marker}) #{args[:first_player].name}"
     puts "Second Player: (#{args[:second_player].marker}) #{args[:second_player].name}"
+    
     puts
     show_board(args[:board])
     puts
-    puts "Current Player: #{args[:current_player].name}"
+
+    puts "Current Player: #{args[:current_player].name}" if args[:over] == nil
   end
 
   def self.show_board(board)
@@ -283,6 +287,13 @@ class Console
     puts ":ERROR: POSITION MUST BE AN AVAILABLE SPACE :ERROR:"
   end
 
+  def self.show_winner(winner)
+    puts "#{winner.name} wins!"
+  end
+
+  def self.show_tie(player1, player2)
+    puts "#{player1.name} & #{player2.name} ties!"
+  end
 
   def self.play_again?
     system("clear")

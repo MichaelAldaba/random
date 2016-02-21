@@ -131,30 +131,30 @@ describe Game do
 
   describe "#winner" do
     context "with first player as winner on a 3 X 3 board" do
-      it "should return first player's marker" do
+      it "should return first player" do
         @game.board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
-        expect(@game.winner(@game.first_player, @game.second_player)).to eq "X"
+        expect(@game.winner(@game.first_player, @game.second_player)).to be @game.first_player
       end
     end
 
     context "with second player as winner on a 3 X 3 board" do
-      it "should return second player's marker" do
+      it "should return second player" do
         @game.board.state = ["X", nil, "X", "O", "O", "O", nil, nil, "X"]
-        expect(@game.winner(@game.first_player, @game.second_player)).to eq "O"
+        expect(@game.winner(@game.first_player, @game.second_player)).to be @game.second_player
       end
     end
 
     context "with first player as winner on a 4 X 4 board" do
-      it "should return first player's marker" do
+      it "should return first player" do
         @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
-        expect(@game.winner(@game.first_player, @game.second_player)).to eq "X"
+        expect(@game.winner(@game.first_player, @game.second_player)).to be @game.first_player
       end
     end
 
     context "with second player as winner on a 4 X 4 board" do
-      it "should return second player's marker" do
+      it "should return second player" do
         @game.board.state = ["O", "O", "O", "O", "X", "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
-        expect(@game.winner(@game.first_player, @game.second_player)).to eq "O"
+        expect(@game.winner(@game.first_player, @game.second_player)).to be @game.second_player
       end
     end
   end

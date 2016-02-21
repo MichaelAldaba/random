@@ -36,6 +36,17 @@ class Game
 			board.update(index, current_player.marker)
 			end_turn!
 		end
+
+		end_game
+	end
+
+	def end_game
+		Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :over => true)
+		if win?(first_player, second_player)
+			Console.show_winner(winner(first_player, second_player))
+		else
+			Console.show_tie(first_player, second_player)
+		end
 	end
 
 	def current_player
@@ -73,7 +84,7 @@ class Game
 	end
 
 	def winner(player1, player2)
-		board.state.count(player1.marker) > board.state.count(player2.marker) ? player1.marker : player2.marker
+		board.state.count(player1.marker) > board.state.count(player2.marker) ? player1 : player2
 	end
 
 end
