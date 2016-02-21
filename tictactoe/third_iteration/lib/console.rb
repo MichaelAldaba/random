@@ -114,7 +114,7 @@ class Console
     selection
   end
 
-  def self.error_message(menu)
+  def self.error_message_menu_select(menu)
     system("clear")
     puts ":ERROR: SELECTION MUST BE AN INTEGER FROM 1 TO #{menu.size} :ERROR:"
     puts
