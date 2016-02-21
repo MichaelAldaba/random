@@ -64,4 +64,63 @@ describe Board do
     end
   end
 
+  describe "#get_lines" do
+    context "when board is 3 X 3" do
+      it "should return an array with the 8 correct lines" do
+        expect(@board.get_lines).to eq([[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]])
+      end
+    end
+
+    context "when board is 4 X 4" do
+      it "should return an array with the 10 correct lines" do
+        @board = Board.new(:size => 4)
+        expect(@board.get_lines).to eq([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15], [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15], [0, 5, 10, 15], [3, 6, 9, 12]])
+      end
+    end
+  end
+
+  describe "#get_rows" do
+    context "when board is 3 X 3" do
+      it "should return 3 correct rows" do
+        expect(@board.get_rows).to eq([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+      end
+    end
+
+    context "when board is 4 X 4" do
+      it "should return 4 correct rows" do
+        @board = Board.new(:size => 4)
+        expect(@board.get_rows).to eq([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]])
+      end
+    end
+  end
+
+  describe "get_columns" do
+    context "when board is 3 X 3" do
+      it "should return 3 correct columns" do
+        expect(@board.get_columns).to eq([[0, 3, 6], [1, 4, 7], [2, 5, 8]])
+      end
+    end
+
+    context "when board is 4 X 4" do
+      it "should return 4 correct columns" do
+        @board = Board.new(:size => 4)
+        expect(@board.get_columns).to eq([[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]])
+      end
+    end
+  end
+
+  describe "get_diagonals" do
+    context "when board is 3 X 3" do
+      it "should return 2 correct diagonals" do
+        expect(@board.get_diagonals).to eq([[0, 4, 8], [2, 4, 6]])
+      end
+    end
+
+    context "when board is 4 X 4" do
+      it "should return 2 correct diagonals" do
+        @board = Board.new(:size => 4)
+        expect(@board.get_diagonals).to eq([[0, 5, 10, 15], [3, 6, 9, 12]])
+      end
+    end
+  end
 end
