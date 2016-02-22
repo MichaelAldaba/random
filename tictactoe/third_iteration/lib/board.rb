@@ -55,4 +55,18 @@ class Board
     diagonals
   end
 
+  def space_available?(space)
+    state[space].nil?
+  end
+
+  def available_spaces
+    available = []
+
+    state.each_index do |i|
+      available << i if space_available?(i)
+    end
+
+    available
+  end
+
 end

@@ -275,7 +275,7 @@ class Console
   end
 
   def self.human_input(board)
-    print "Please type your POSITION selection for your marker: "
+    print "Please type your SPACE selection for your marker: "
     input = gets.strip.to_i
   end
 
@@ -284,7 +284,7 @@ class Console
   end
 
   def self.error_message_index_select
-    puts ":ERROR: POSITION MUST BE AN AVAILABLE SPACE :ERROR:"
+    puts ":ERROR: INPUT MUST BE AN AVAILABLE SPACE :ERROR:"
   end
 
   def self.show_winner(winner)
