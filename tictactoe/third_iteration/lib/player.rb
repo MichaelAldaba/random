@@ -25,8 +25,8 @@ class Human < Player
     @marker = args[:marker]
   end
 
-  def move(args = {})
-    index = Console.human_input(args[:board])
+  def move(board)
+    index = Console.human_input(board)
   end
 end
 

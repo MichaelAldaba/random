@@ -26,7 +26,7 @@ class Game
 					Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :error => true)
 				end
 
-				index = current_player.move(:board => board, :current_player => current_player, :other_player => other_player, :first_player => first_player, :second_player => second_player)
+				index = current_player.move(board)
 
 				break if Console.valid_input?(index, board)
 
