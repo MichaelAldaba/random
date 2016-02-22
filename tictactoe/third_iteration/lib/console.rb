@@ -134,9 +134,9 @@ class Console
       :menu  => @@vs_computer_list)
     when 1
       players = {:player1 => {:type => HUMAN_TYPE, :name => PLAYER, :marker => @@first_marker},
-                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@second_marker}}
+                :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@second_marker, :other_marker => @@first_marker}}
     when 2
-      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@first_marker},
+      players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER, :marker => @@first_marker, :other_marker => @@second_marker},
                 :player2 => {:type => HUMAN_TYPE, :name => PLAYER, :marker => @@second_marker}}
     when 3
       main_menu
@@ -160,8 +160,8 @@ class Console
   end
 
   def self.computer_mode
-    players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER1, :marker => @@first_marker},
-              :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER2, :marker => @@second_marker}}
+    players = {:player1 => {:type => COMPUTER_TYPE, :name => COMPUTER1, :marker => @@first_marker, :other_marker => @@second_marker},
+              :player2 => {:type => COMPUTER_TYPE, :name => COMPUTER2, :marker => @@second_marker, :other_marker => @@first_marker}}
   end
 
   def self.marker_select

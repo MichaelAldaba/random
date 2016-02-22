@@ -1,6 +1,6 @@
 class Player
   DEFAULT_PLAYERS = {:player1 => {:type => "H", :name => "Player", :marker => "X"},
-                    :player2 => {:type => "C", :name => "Computer", :marker => "O"}}
+                    :player2 => {:type => "C", :name => "Computer", :marker => "O", :other_marker => "X"}}
   attr_accessor :name, :marker
 
   def self.generate_players(players = {})
@@ -11,7 +11,7 @@ class Player
       if players[player][:type] == "H"
         players_array << Human.new(:name => players[player][:name], :marker => players[player][:marker])
       else
-        players_array << Computer.new(:name => players[player][:name], :marker => players[player][:marker])
+        players_array << Computer.new(:name => players[player][:name], :marker => players[player][:marker], :other_marker => players[player][:other_marker])
       end
     end
 
@@ -31,8 +31,11 @@ class Human < Player
 end
 
 class Computer < Player
+  attr_reader :other_marker
+
   def initialize(args = {})
     @name = args[:name]
     @marker = args[:marker]
+    @other_marker = args[:other_marker]
   end
 end
