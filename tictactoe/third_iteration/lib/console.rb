@@ -287,8 +287,12 @@ class Console
     puts ":ERROR: INPUT MUST BE AN AVAILABLE SPACE :ERROR:"
   end
 
-  def self.show_winner(winner)
-    puts "#{winner.name} wins!"
+  def self.show_winner(args = {})
+    if args[:winner] == args[:first_player].marker
+      puts "#{args[:first_player].name} wins!"
+    else
+      puts "#{args[:second_player].name} wins!"
+    end
   end
 
   def self.show_tie(player1, player2)

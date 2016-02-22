@@ -75,16 +75,24 @@ class Board
       marker = state[line[0]]
       line.each do |position|
         counter += 1 if state[position] == marker
-        if counter == size && marker != nil
-          return true
-        end
+        return true if counter == size && marker != nil
       end
     end
 
     false
   end
 
-  def winner(player1, player2)
-    state.count(player1.marker) > state.count(player2.marker) ? player1 : player2
+  def winner
+    get_lines.each do |line|
+      counter = 0
+      marker = state[line[0]]
+      line.each do |position|
+        counter += 1 if state[position] == marker
+        return marker if counter == size && marker != nil
+      end
+    end
+
+    nil
   end
+
 end
