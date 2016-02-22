@@ -43,7 +43,7 @@ class Game
 	def end_game
 		Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :over => true)
 		if board.win?(first_player, second_player)
-			Console.show_winner(winner(first_player, second_player))
+			Console.show_winner(board.winner(first_player, second_player))
 		else
 			Console.show_tie(first_player, second_player)
 		end
@@ -64,9 +64,4 @@ class Game
 	def over?
 		board.win?(first_player, second_player) || board.tie?
 	end
-
-	def winner(player1, player2)
-		board.state.count(player1.marker) > board.state.count(player2.marker) ? player1 : player2
-	end
-
 end

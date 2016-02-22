@@ -83,4 +83,7 @@ class Board
     false
   end
 
+  def winner(player1, player2)
+    state.count(player1.marker) > state.count(player2.marker) ? player1 : player2
+  end
 end

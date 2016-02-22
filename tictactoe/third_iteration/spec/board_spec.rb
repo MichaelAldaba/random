@@ -192,4 +192,39 @@ describe Board do
       end
     end
   end
+
+  describe "#winner" do
+    before :each do
+      @human = Human.new(:name => "Player", :marker => "X")
+      @computer = Computer.new(:name => "Computer", :marker => "O")
+    end
+
+    context "with first player as winner on a 3 X 3 board" do
+      it "should return first player" do
+        @board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
+        expect(@board.winner(@human, @computer)).to be @human
+      end
+    end
+
+    context "with second player as winner on a 3 X 3 board" do
+      it "should return second player" do
+        @board.state = ["X", nil, "X", "O", "O", "O", nil, nil, "X"]
+        expect(@board.winner(@human, @computer)).to be @computer
+      end
+    end
+
+    context "with first player as winner on a 4 X 4 board" do
+      it "should return first player" do
+        @board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@board.winner(@human, @computer)).to be @human
+      end
+    end
+
+    context "with second player as winner on a 4 X 4 board" do
+      it "should return second player" do
+        @board.state = ["O", "O", "O", "O", "X", "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@board.winner(@human, @computer)).to be @computer
+      end
+    end
+  end
 end
