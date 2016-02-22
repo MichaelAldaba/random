@@ -165,14 +165,14 @@ describe Board do
     context "with a winner on a 3 X 3 board" do
       it "should return true" do
         @board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
-        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be true
+        expect(@board.win?).to be true
       end
     end
 
     context "with no winner on a 3 X 3 board" do
       it "should return false" do
         @board.state = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
-        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be false
+        expect(@board.win?).to be false
       end
     end
 
@@ -180,7 +180,7 @@ describe Board do
       it "should return true" do
         @board = Board.new(:size => 4)
         @board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
-        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be true
+        expect(@board.win?).to be true
       end
     end
 
@@ -188,7 +188,7 @@ describe Board do
       it "should return false" do
         @board = Board.new({:size => 4})
         @board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, nil]
-        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be false
+        expect(@board.win?).to be false
       end
     end
   end
