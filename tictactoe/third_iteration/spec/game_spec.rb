@@ -81,54 +81,6 @@ describe Game do
     end
   end
 
-  describe "#win?" do
-    context "with a winner on a 3 X 3 board" do
-      it "should return true" do
-        @game.board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
-        expect(@game.win?(@game.first_player, @game.second_player)).to be true
-      end
-    end
-
-    context "with no winner on a 3 X 3 board" do
-      it "should return false" do
-        @game.board.state = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
-        expect(@game.win?(@game.first_player, @game.second_player)).to be false
-      end
-    end
-
-    context "with a winner on a 4 X 4 board" do
-      it "should return true" do
-        @game = Game.new({:size => 4})
-        @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
-        expect(@game.win?(@game.first_player, @game.second_player)).to be true
-      end
-    end
-
-    context "with no winner on a 4 X 4 board" do
-      it "should return false" do
-        @game = Game.new({:size => 4})
-        @game.board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, nil]
-        expect(@game.win?(@game.first_player, @game.second_player)).to be false
-      end
-    end
-  end
-
-  describe "#tie?" do
-    context "with a tie game" do
-      it "should return true" do
-        @game.board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
-        expect(@game.tie?).to be true
-      end
-    end
-
-    context "with a non-tied game" do
-      it "should return false" do
-        @game.board.state = ["X", nil, "O", "X", "O", "X", "O", "X", "O"]
-        expect(@game.tie?).to be false
-      end
-    end
-  end
-
   describe "#winner" do
     context "with first player as winner on a 3 X 3 board" do
       it "should return first player" do

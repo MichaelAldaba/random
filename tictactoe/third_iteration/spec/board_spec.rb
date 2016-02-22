@@ -41,32 +41,32 @@ describe Board do
     end
   end
 
-  describe "#full?" do
+  describe "#tie?" do
     context "when 3 X 3 board is full" do
       it "should return true" do
         @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
-        expect(@board.full?).to be true
+        expect(@board.tie?).to be true
       end
     end
 
     context "when 3 X 3 board is not full" do
       it "should return false" do
         @board.state = ["X", nil, "O", "X", "O", "X", "O", "X", "O"]
-        expect(@board.full?).to be false
+        expect(@board.tie?).to be false
       end
     end
 
     context "when 4 X 4 board is full" do
       it "should return true" do
         @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O"]
-        expect(@board.full?).to be true
+        expect(@board.tie?).to be true
       end
     end
 
     context "when 4 X 4 board is not full" do
       it "should return false" do
         @board.state = ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", "O", "X", nil]
-        expect(@board.full?).to be false
+        expect(@board.tie?).to be false
       end
     end
   end
@@ -158,6 +158,38 @@ describe Board do
     it "should return an Array of available spaces" do
       @board.state = ["X", "O", "X", nil, nil, nil, nil, nil, nil]
       expect(@board.available_spaces).to eq([3, 4, 5, 6, 7, 8])
+    end
+  end
+
+  describe "#win?" do
+    context "with a winner on a 3 X 3 board" do
+      it "should return true" do
+        @board.state = ["X", "X", "X", "O", nil, "O", nil, nil, nil]
+        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be true
+      end
+    end
+
+    context "with no winner on a 3 X 3 board" do
+      it "should return false" do
+        @board.state = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
+        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be false
+      end
+    end
+
+    context "with a winner on a 4 X 4 board" do
+      it "should return true" do
+        @board = Board.new(:size => 4)
+        @board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, "X"]
+        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be true
+      end
+    end
+
+    context "with no winner on a 4 X 4 board" do
+      it "should return false" do
+        @board = Board.new({:size => 4})
+        @board.state = ["X", "O", "O", "O", nil, "X", nil, nil, nil, nil, "X", nil, nil, nil, nil, nil]
+        expect(@board.win?(Human.new(:name => "Player", :marker => "X"), Computer.new(:name => "Computer", :marker => "O"))).to be false
+      end
     end
   end
 end

@@ -11,7 +11,7 @@ class Board
   	state == Array.new(size ** 2, nil)
   end
 
-  def full?
+  def tie?
   	!state.include?(nil)
   end
 
@@ -67,6 +67,20 @@ class Board
     end
 
     available
+  end
+
+  def win?(player1, player2)
+    [player1.marker, player2.marker].each do |marker|
+      get_lines.each do |line|
+        counter = 0
+        line.each do |position|
+          counter += 1 if state[position] == marker
+          return true if counter == size
+        end
+      end
+    end
+
+    false
   end
 
 end

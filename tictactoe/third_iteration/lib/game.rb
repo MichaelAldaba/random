@@ -26,7 +26,7 @@ class Game
 					Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :error => true)
 				end
 
-				index = current_player.move(:board => board)
+				index = current_player.move(:board => board, :current_player => current_player, :other_player => other_player, :first_player => first_player, :second_player => second_player)
 
 				break if Console.valid_input?(index, board)
 
@@ -42,7 +42,7 @@ class Game
 
 	def end_game
 		Console.display(:board => board, :first_player => first_player, :second_player => second_player, :current_player => current_player, :over => true)
-		if win?(first_player, second_player)
+		if board.win?(first_player, second_player)
 			Console.show_winner(winner(first_player, second_player))
 		else
 			Console.show_tie(first_player, second_player)
@@ -62,25 +62,7 @@ class Game
 	end
 
 	def over?
-		win?(first_player, second_player) || tie?
-	end
-
-	def win?(player1, player2)
-		[player1.marker, player2.marker].each do |marker|
-			@winning_lines.each do |line|
-				counter = 0
-				line.each do |position|
-					counter += 1 if board.state[position] == marker
-					return true if counter == board.size
-				end
-			end
-		end
-
-		false
-	end
-
-	def tie?
-		board.full?
+		board.win?(first_player, second_player) || board.tie?
 	end
 
 	def winner(player1, player2)
