@@ -95,4 +95,10 @@ class Board
     nil
   end
 
+  def initialize_dup(other)
+    super(other)
+    @state = other.state.dup
+  end
+
+
 end
